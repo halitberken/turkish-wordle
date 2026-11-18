@@ -1,0 +1,396 @@
+{
+  "answers": 1900,
+  "guesses": 5370,
+  "letter_presence_pct": {
+    "a": 52.05,
+    "b": 12.05,
+    "c": 5.26,
+    "ç": 7.89,
+    "d": 13.11,
+    "e": 34.16,
+    "f": 5.63,
+    "g": 7.26,
+    "ğ": 2.79,
+    "h": 9.05,
+    "ı": 13.21,
+    "i": 29.58,
+    "j": 0.79,
+    "k": 32.05,
+    "l": 23.84,
+    "m": 24.16,
+    "n": 23.42,
+    "o": 13.26,
+    "ö": 5.0,
+    "p": 7.79,
+    "r": 29.11,
+    "s": 19.32,
+    "ş": 8.95,
+    "t": 20.63,
+    "u": 13.84,
+    "ü": 8.42,
+    "v": 6.63,
+    "y": 13.21,
+    "z": 10.63
+  },
+  "letters_by_presence": [
+    [
+      "a",
+      52.05
+    ],
+    [
+      "e",
+      34.16
+    ],
+    [
+      "k",
+      32.05
+    ],
+    [
+      "i",
+      29.58
+    ],
+    [
+      "r",
+      29.11
+    ],
+    [
+      "m",
+      24.16
+    ],
+    [
+      "l",
+      23.84
+    ],
+    [
+      "n",
+      23.42
+    ],
+    [
+      "t",
+      20.63
+    ],
+    [
+      "s",
+      19.32
+    ],
+    [
+      "u",
+      13.84
+    ],
+    [
+      "o",
+      13.26
+    ],
+    [
+      "ı",
+      13.21
+    ],
+    [
+      "y",
+      13.21
+    ],
+    [
+      "d",
+      13.11
+    ],
+    [
+      "b",
+      12.05
+    ],
+    [
+      "z",
+      10.63
+    ],
+    [
+      "h",
+      9.05
+    ],
+    [
+      "ş",
+      8.95
+    ],
+    [
+      "ü",
+      8.42
+    ],
+    [
+      "ç",
+      7.89
+    ],
+    [
+      "p",
+      7.79
+    ],
+    [
+      "g",
+      7.26
+    ],
+    [
+      "v",
+      6.63
+    ],
+    [
+      "f",
+      5.63
+    ],
+    [
+      "c",
+      5.26
+    ],
+    [
+      "ö",
+      5.0
+    ],
+    [
+      "ğ",
+      2.79
+    ],
+    [
+      "j",
+      0.79
+    ]
+  ],
+  "turkish_specific_letters": "çğıöşü",
+  "answers_with_turkish_specific_letter_pct": 37.0,
+  "guesses_with_turkish_specific_letter_pct": 38.94,
+  "answers_with_repeated_letter_pct": 42.47,
+  "guesses_with_repeated_letter_pct": 41.58,
+  "best_openers_all_guesses": [
+    {
+      "word": "erika",
+      "expected_letters_hit": 1.7695,
+      "answers_sharing_a_letter_pct": 94.58
+    },
+    {
+      "word": "akemi",
+      "expected_letters_hit": 1.72,
+      "answers_sharing_a_letter_pct": 93.47
+    },
+    {
+      "word": "ikame",
+      "expected_letters_hit": 1.72,
+      "answers_sharing_a_letter_pct": 93.47
+    },
+    {
+      "word": "kaime",
+      "expected_letters_hit": 1.72,
+      "answers_sharing_a_letter_pct": 93.47
+    },
+    {
+      "word": "kamer",
+      "expected_letters_hit": 1.7153,
+      "answers_sharing_a_letter_pct": 93.53
+    },
+    {
+      "word": "krema",
+      "expected_letters_hit": 1.7153,
+      "answers_sharing_a_letter_pct": 93.53
+    },
+    {
+      "word": "marke",
+      "expected_letters_hit": 1.7153,
+      "answers_sharing_a_letter_pct": 93.53
+    },
+    {
+      "word": "merak",
+      "expected_letters_hit": 1.7153,
+      "answers_sharing_a_letter_pct": 93.53
+    },
+    {
+      "word": "ekran",
+      "expected_letters_hit": 1.7079,
+      "answers_sharing_a_letter_pct": 93.68
+    },
+    {
+      "word": "erkan",
+      "expected_letters_hit": 1.7079,
+      "answers_sharing_a_letter_pct": 93.68
+    }
+  ],
+  "best_openers_answers_only": [
+    {
+      "word": "erika",
+      "expected_letters_hit": 1.7695,
+      "answers_sharing_a_letter_pct": 94.58
+    },
+    {
+      "word": "krema",
+      "expected_letters_hit": 1.7153,
+      "answers_sharing_a_letter_pct": 93.53
+    },
+    {
+      "word": "merak",
+      "expected_letters_hit": 1.7153,
+      "answers_sharing_a_letter_pct": 93.53
+    },
+    {
+      "word": "ekran",
+      "expected_letters_hit": 1.7079,
+      "answers_sharing_a_letter_pct": 93.68
+    },
+    {
+      "word": "kenar",
+      "expected_letters_hit": 1.7079,
+      "answers_sharing_a_letter_pct": 93.68
+    },
+    {
+      "word": "ikram",
+      "expected_letters_hit": 1.6695,
+      "answers_sharing_a_letter_pct": 91.21
+    },
+    {
+      "word": "marki",
+      "expected_letters_hit": 1.6695,
+      "answers_sharing_a_letter_pct": 91.21
+    },
+    {
+      "word": "asker",
+      "expected_letters_hit": 1.6668,
+      "answers_sharing_a_letter_pct": 93.74
+    },
+    {
+      "word": "emlak",
+      "expected_letters_hit": 1.6626,
+      "answers_sharing_a_letter_pct": 93.11
+    },
+    {
+      "word": "kalem",
+      "expected_letters_hit": 1.6626,
+      "answers_sharing_a_letter_pct": 93.11
+    }
+  ],
+  "one_letter_families": {
+    "answers_with_a_one_letter_neighbour": 1171,
+    "answers_with_a_one_letter_neighbour_pct": 61.63,
+    "families_by_size": {
+      "2": 697,
+      "3": 108,
+      "4": 27,
+      "5": 6,
+      "6": 4,
+      "7": 1,
+      "8": 1
+    },
+    "largest": [
+      {
+        "pattern": "sa_ma",
+        "size": 8,
+        "words": [
+          "saçma",
+          "salma",
+          "sanma",
+          "sapma",
+          "sarma",
+          "satma",
+          "savma",
+          "sayma"
+        ]
+      },
+      {
+        "pattern": "a_mak",
+        "size": 7,
+        "words": [
+          "açmak",
+          "ahmak",
+          "almak",
+          "anmak",
+          "asmak",
+          "aşmak",
+          "atmak"
+        ]
+      },
+      {
+        "pattern": "e_mek",
+        "size": 6,
+        "words": [
+          "eğmek",
+          "ekmek",
+          "emmek",
+          "ermek",
+          "etmek",
+          "ezmek"
+        ]
+      },
+      {
+        "pattern": "ka_ar",
+        "size": 6,
+        "words": [
+          "kaçar",
+          "kadar",
+          "karar",
+          "kaşar",
+          "katar",
+          "kayar"
+        ]
+      },
+      {
+        "pattern": "ya_an",
+        "size": 6,
+        "words": [
+          "yaban",
+          "yalan",
+          "yaman",
+          "yaran",
+          "yavan",
+          "yayan"
+        ]
+      },
+      {
+        "pattern": "ya_ma",
+        "size": 6,
+        "words": [
+          "yağma",
+          "yakma",
+          "yanma",
+          "yapma",
+          "yatma",
+          "yazma"
+        ]
+      },
+      {
+        "pattern": "kayı_",
+        "size": 5,
+        "words": [
+          "kayık",
+          "kayın",
+          "kayıp",
+          "kayış",
+          "kayıt"
+        ]
+      },
+      {
+        "pattern": "ka_ak",
+        "size": 5,
+        "words": [
+          "kabak",
+          "kaçak",
+          "kapak",
+          "kayak",
+          "kazak"
+        ]
+      },
+      {
+        "pattern": "ka_ık",
+        "size": 5,
+        "words": [
+          "kaçık",
+          "kasık",
+          "kaşık",
+          "kayık",
+          "kazık"
+        ]
+      },
+      {
+        "pattern": "ka_lı",
+        "size": 5,
+        "words": [
+          "kanlı",
+          "kaplı",
+          "karlı",
+          "kaslı",
+          "katlı"
+        ]
+      }
+    ]
+  }
+}

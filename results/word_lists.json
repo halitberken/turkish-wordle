@@ -1,0 +1,115 @@
+{
+  "steps": [
+    {
+      "step": "raw dictionary entries (both lists)",
+      "count": 140026
+    },
+    {
+      "step": "after dropping proper nouns (upper-case first letter)",
+      "count": 135048
+    },
+    {
+      "step": "after dropping multi-word / punctuated entries",
+      "count": 106755
+    },
+    {
+      "step": "exactly 5 Turkish letters after normalisation",
+      "count": 10628
+    },
+    {
+      "step": "deduplicated -> guess list",
+      "count": 5370
+    },
+    {
+      "step": "also in the 50k subtitle list -> common words",
+      "count": 1907
+    },
+    {
+      "step": "after removing excluded (offensive) words -> answer list",
+      "count": 1900
+    }
+  ],
+  "guesses": 5370,
+  "answers": 1900,
+  "sources": {
+    "tdk_cannuhlar.txt": {
+      "entries": 76186,
+      "sha256": "3012b7153d1ef1185080bb20c30c87aefab8163522432557532975f70f78c4ad"
+    },
+    "tdk_mertemin.txt": {
+      "entries": 63840,
+      "sha256": "6e9d4918bee9c85fb1e27c24a0c4f5d5d882a8df0a304c6b53e4cbfb27c52767"
+    },
+    "opensubtitles_tr_50k.txt": {
+      "entries": 50000,
+      "sha256": "480192844e7fdfe9591bbf0b9cfbb96ed5751cfbba7024fd45d8cb7508e07d5c"
+    }
+  },
+  "circumflex_words": 91,
+  "circumflex_words_merged_with_plain_spelling": 19,
+  "circumflex_examples": [
+    "adedî",
+    "âdeta",
+    "ahkâm",
+    "amelî",
+    "bâtın",
+    "bekâr",
+    "cebrî",
+    "cezrî"
+  ],
+  "circumflex_merged_examples": [
+    "batın",
+    "bekar",
+    "dahil",
+    "hakim",
+    "harbi",
+    "ilahi",
+    "kabil",
+    "kanun"
+  ],
+  "answers_with_merged_subtitle_spellings": 68,
+  "merged_subtitle_spelling_examples": {
+    "ahlak": [
+      "ahlak",
+      "ahlâk"
+    ],
+    "bekar": [
+      "bekar",
+      "bekâr"
+    ],
+    "dahil": [
+      "dahil",
+      "dâhil"
+    ],
+    "değil": [
+      "değil",
+      "değİl"
+    ],
+    "evlat": [
+      "evlat",
+      "evlât"
+    ],
+    "giriş": [
+      "giriş",
+      "gİrİş"
+    ],
+    "gizli": [
+      "gizli",
+      "gİzlİ"
+    ],
+    "hakim": [
+      "hakim",
+      "hâkim"
+    ]
+  },
+  "common_words_missed_without_turkish_normalisation": 0,
+  "excluded_words": [
+    "boklu",
+    "kahpe",
+    "nonoş",
+    "penis",
+    "porno",
+    "taşak",
+    "yarak"
+  ]
+}

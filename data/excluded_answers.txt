@@ -1,0 +1,8 @@
+# Common words kept as valid guesses but never chosen as hidden answers (profanity, sexual content, slurs); one per line.
+boklu
+kahpe
+nonoş
+penis
+porno
+taşak
+yarak

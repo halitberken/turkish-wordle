@@ -1,0 +1,22 @@
+[build-system]
+requires = ["setuptools>=64"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "wordle-tr"
+version = "0.1.0"
+description = "AI agents for Turkish Wordle: CSP filtering, entropy and expectimax (BIL 4112, Dokuz Eylül University)"
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = ["numpy>=1.24"]
+
+[project.optional-dependencies]
+dev = ["matplotlib>=3.7", "pytest>=7.0"]
+
+[tool.setuptools.packages.find]
+include = ["wordle_tr*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["."]
+markers = ["slow: takes more than a few seconds (skipped unless --runslow)"]
