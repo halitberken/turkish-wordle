@@ -8,7 +8,7 @@ modes:
 examples:
   python scripts/play.py play
   python scripts/play.py watch --agent frequency --word kalem
-  python scripts/play.py assist --agent frequency
+  python scripts/play.py assist                 # entropy agent by default
 """
 
 from __future__ import annotations
@@ -120,6 +120,9 @@ def cmd_watch(args: argparse.Namespace) -> None:
 
     def on_turn(turn: int, guess: str, pattern: int, candidates: list[str]) -> None:
         line = f"{turn:>2}. {render_guess(guess, pattern, color)}"
+        info = getattr(agent, "last_choice", None)
+        if info and info["guess"] == guess:
+            line += f"  {info['bits']:.2f} bits"
         if pattern != ALL_GREEN:
             line += f"   {len(candidates):,} candidate{'s' if len(candidates) != 1 else ''} left"
             if len(candidates) <= args.show:
@@ -132,6 +135,11 @@ def cmd_watch(args: argparse.Namespace) -> None:
         print(f"Solved in {result.num_guesses} guesses.")
     else:
         print(f"Not solved within {args.max_guesses} guesses.")
+
+
+def expected_bits(agent, guess: str) -> str:
+    info = getattr(agent, "last_choice", None)
+    return f" ({info['bits']:.2f} bits expected)" if info and info["guess"] == guess else ""
 
 
 def ask(prompt: str) -> str | None:
@@ -154,7 +162,7 @@ def cmd_assist(args: argparse.Namespace) -> None:
     while True:
         suggestion = agent.choose_guess(list(history), candidates)
         print(f"\nTurn {len(history) + 1}: {len(candidates):,} candidate{'s' if len(candidates) != 1 else ''}"
-              f" left. Suggestion: {to_upper(suggestion)}")
+              f" left. Suggestion: {to_upper(suggestion)}" + expected_bits(agent, suggestion))
         text = ask("  word you tried: ")
         if text is None:
             return
@@ -207,7 +215,7 @@ def main() -> None:
     p.set_defaults(func=cmd_play)
 
     p = sub.add_parser("watch", help="watch an agent solve a word")
-    p.add_argument("--agent", choices=sorted(AGENTS), default="frequency", help="agent (default frequency)")
+    p.add_argument("--agent", choices=sorted(AGENTS), default="entropy", help="agent (default entropy)")
     p.add_argument("--word", help="hidden word (default: a random answer)")
     p.add_argument("--seed", type=int, help="seed for choosing the random word")
     p.add_argument("--agent-seed", type=int, default=0, help="seed for random agents (default 0)")
@@ -218,7 +226,7 @@ def main() -> None:
     p.set_defaults(func=cmd_watch)
 
     p = sub.add_parser("assist", help="suggestions while you play on another site")
-    p.add_argument("--agent", choices=sorted(AGENTS), default="frequency", help="agent (default frequency)")
+    p.add_argument("--agent", choices=sorted(AGENTS), default="entropy", help="agent (default entropy)")
     p.add_argument("--agent-seed", type=int, default=0, help="seed for random agents (default 0)")
     p.add_argument("--show", type=int, default=20, help="list the candidates when at most this many remain")
     common(p)

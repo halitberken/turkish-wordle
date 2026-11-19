@@ -15,8 +15,8 @@ and ends with a playable web demo.
 | 6 | Problem definition, Turkish alphabet, word lists, statistics, literature | Faruk | ✅ done: [doc](docs/week6_problem_and_literature.md) |
 | 7 | Feedback, game, agent interface, baselines, evaluation | Arda | ✅ done: [doc](docs/week7_environment_and_baselines.md) |
 | 8 | Constraints, CSP solver, pattern table, filter benchmark | Berken | ✅ done: [doc](docs/week8_constraints_and_pattern_table.md) |
-| 9 | Entropy (information-gain) agent | Arda | ⏳ next |
-| 10 | Expectimax search and oracle | Berken | – |
+| 9 | Entropy (information-gain) agent | Arda | ✅ done: [doc](docs/week9_entropy_agent.md) |
+| 10 | Expectimax search and oracle | Berken | ⏳ next |
 | 11 | Experiments and analysis | Faruk | – |
 | 12 | Final report, presentation, hand-in | everyone | – |
 | – | Playable web demo (GitHub Pages) | – | – |
@@ -40,20 +40,26 @@ python -m pytest                    # slow tests are skipped; add --runslow to i
 | `python scripts/word_stats.py` | Letter frequencies, repeated letters, best openers, one-letter families → `results/word_stats.json`, `results/letter_frequency.png` |
 | `python scripts/evaluate.py` | Runs agents on every answer (unlimited guesses; random agents over `--seeds 5`) → `results/baselines.json`, `results/baselines.md`, `results/guess_distribution.png`. Options: `--agent NAME` (repeatable), `--sample N`, `--filter {feedback,constraints,csp,table}`, `--max-guesses N` |
 | `python scripts/benchmark_filters.py --full-check --end-to-end` | Times the four filters on 500 random states, checks that they agree and that every pattern-table cell matches `feedback()`, and times a full evaluation with each filter → `results/filters.json`, `results/filters.md` |
+| `python scripts/evaluate.py --agent entropy --agent most_parts --filter table --name NAME` | Any registered agents (`random`, `frequency`, `entropy`, `entropy_candidates`, `entropy_freq`, `most_parts`) → `results/NAME.json`, `NAME.md`, `NAME_guess_distribution.png` |
+| `python scripts/entropy_examples.py` | Best openers by entropy, a worked example, and the hard SA_MA-type words played by every agent → `results/entropy_examples.json`, `.md` |
 | `python scripts/play.py play` | Play in the terminal (coloured tiles, Turkish keyboard; `--no-color` for emoji) |
-| `python scripts/play.py watch --agent frequency --word kalem` | Watch an agent solve a word turn by turn |
-| `python scripts/play.py assist` | Suggestions while you play on another site: type your word (Enter = suggestion) and its colours (`g`/`y`/`x`) |
+| `python scripts/play.py watch --agent entropy --word kalem` | Watch an agent solve a word turn by turn (entropy agents also show the expected bits) |
+| `python scripts/play.py assist` | Suggestions (entropy agent by default) while you play on another site: type your word (Enter = suggestion) and its colours (`g`/`y`/`x`) |
 
 Every script has `--help`.
 
 ## Results so far
 
-All 1,900 answers, unlimited guesses ([`results/baselines.md`](results/baselines.md)):
+All 1,900 answers, unlimited guesses ([`results/entropy_agents.md`](results/entropy_agents.md)):
 
-| Agent | Mean guesses | % solved ≤ 6 | Max |
-| --- | ---: | ---: | ---: |
-| random (5 seeds) | 4.1126 ± 0.0352 | 98.38 | 9 |
-| letter frequency | 3.7400 | 99.26 | 8 |
+| Agent | First guess | Mean guesses | % solved ≤ 6 | Max |
+| --- | --- | ---: | ---: | ---: |
+| random (5 seeds) | – | 4.1126 ± 0.0352 | 98.38 | 9 |
+| letter frequency | ERİKA | 3.7400 | 99.26 | 8 |
+| entropy, candidates only | KENAR | 3.5189 | 99.89 | 7 |
+| entropy | KAMER | 3.4479 | 100.00 | 5 |
+| entropy, frequency prior | KENAR | 3.4479 | 100.00 | 5 |
+| most parts | KERİM | 3.4184 | 100.00 | 5 |
 
 Candidate filtering, 500 random states ([`results/filters.md`](results/filters.md)): reference 2.054 ms,
 constraints 0.390 ms, CSP 0.502 ms, pattern table 0.017 ms per state, all with identical results.
@@ -82,6 +88,7 @@ wordle_tr/       importable package
   feedback.py      feedback(), pattern encoding, emoji, parse_pattern, reference filter     (Arda)
   game.py          WordleGame, InvalidGuessError                                            (Arda)
   agents/          Agent interface, registry (make_agent), RandomAgent, LetterFrequencyAgent (Arda)
+    entropy.py     EntropyAgent: entropy, entropy_candidates, entropy_freq, most_parts      (Arda)
   simulate.py      play_game, evaluate, summarize                                           (Arda)
   constraints.py   Constraints, ContradictionError, describe()                              (Berken)
   csp_solver.py    WordTrie, CSPSolver (backtracking + forward checking)                    (Berken)

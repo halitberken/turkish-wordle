@@ -75,12 +75,12 @@ def rounded_bars(ax, xs, heights, width: float, colors) -> None:
         ax.add_patch(PathPatch(MplPath(verts, codes), facecolor=color, edgecolor="none"))
 
 
-def legend(ax, entries: list[tuple[str, str]], loc: str = "upper right") -> None:
-    """Square swatches with ink-coloured text."""
+def legend(ax, entries: list[tuple[str, str]], loc: str = "upper right", anchor=None) -> None:
+    """Square swatches with ink-coloured text; ``anchor`` is an optional (x, y) in axes coordinates."""
     from matplotlib.patches import Patch
 
     handles = [Patch(facecolor=color, edgecolor="none", label=label) for label, color in entries]
-    leg = ax.legend(handles=handles, loc=loc, frameon=False, fontsize=9,
+    leg = ax.legend(handles=handles, loc=loc, bbox_to_anchor=anchor, frameon=False, fontsize=9,
                     handlelength=0.9, handleheight=0.9, labelcolor=INK_SECONDARY)
     leg.set_zorder(5)
 

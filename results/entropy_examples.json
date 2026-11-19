@@ -1,0 +1,789 @@
+{
+ "openers": {
+  "entropy": [
+   {
+    "guess": "kamer",
+    "bits": 5.7713472521953815,
+    "parts": 139,
+    "is_candidate": false,
+    "candidates": 1900
+   },
+   {
+    "guess": "tarik",
+    "bits": 5.766928658139561,
+    "parts": 133,
+    "is_candidate": false,
+    "candidates": 1900
+   },
+   {
+    "guess": "kenar",
+    "bits": 5.75712346584563,
+    "parts": 130,
+    "is_candidate": true,
+    "candidates": 1900
+   },
+   {
+    "guess": "merak",
+    "bits": 5.7427752265272956,
+    "parts": 134,
+    "is_candidate": true,
+    "candidates": 1900
+   },
+   {
+    "guess": "kamil",
+    "bits": 5.693129192087154,
+    "parts": 139,
+    "is_candidate": true,
+    "candidates": 1900
+   },
+   {
+    "guess": "kelam",
+    "bits": 5.692321103019969,
+    "parts": 135,
+    "is_candidate": false,
+    "candidates": 1900
+   },
+   {
+    "guess": "karni",
+    "bits": 5.688330937185531,
+    "parts": 126,
+    "is_candidate": false,
+    "candidates": 1900
+   },
+   {
+    "guess": "kalem",
+    "bits": 5.687092003810493,
+    "parts": 134,
+    "is_candidate": true,
+    "candidates": 1900
+   },
+   {
+    "guess": "malik",
+    "bits": 5.685604219721875,
+    "parts": 131,
+    "is_candidate": true,
+    "candidates": 1900
+   },
+   {
+    "guess": "serak",
+    "bits": 5.685476734035377,
+    "parts": 132,
+    "is_candidate": false,
+    "candidates": 1900
+   }
+  ],
+  "entropy_candidates": [
+   {
+    "guess": "kenar",
+    "bits": 5.75712346584563,
+    "parts": 130,
+    "is_candidate": true,
+    "candidates": 1900
+   },
+   {
+    "guess": "merak",
+    "bits": 5.7427752265272956,
+    "parts": 134,
+    "is_candidate": true,
+    "candidates": 1900
+   },
+   {
+    "guess": "kamil",
+    "bits": 5.693129192087154,
+    "parts": 139,
+    "is_candidate": true,
+    "candidates": 1900
+   },
+   {
+    "guess": "kalem",
+    "bits": 5.687092003810493,
+    "parts": 134,
+    "is_candidate": true,
+    "candidates": 1900
+   },
+   {
+    "guess": "malik",
+    "bits": 5.685604219721875,
+    "parts": 131,
+    "is_candidate": true,
+    "candidates": 1900
+   },
+   {
+    "guess": "keman",
+    "bits": 5.644451538052156,
+    "parts": 129,
+    "is_candidate": true,
+    "candidates": 1900
+   },
+   {
+    "guess": "kemal",
+    "bits": 5.634584625342642,
+    "parts": 130,
+    "is_candidate": true,
+    "candidates": 1900
+   },
+   {
+    "guess": "kerim",
+    "bits": 5.613647948617285,
+    "parts": 143,
+    "is_candidate": true,
+    "candidates": 1900
+   },
+   {
+    "guess": "marki",
+    "bits": 5.608605640905755,
+    "parts": 121,
+    "is_candidate": true,
+    "candidates": 1900
+   },
+   {
+    "guess": "katil",
+    "bits": 5.596372592457482,
+    "parts": 130,
+    "is_candidate": true,
+    "candidates": 1900
+   }
+  ],
+  "entropy_freq": [
+   {
+    "guess": "kenar",
+    "bits": 5.757439928625876,
+    "parts": 130,
+    "is_candidate": true,
+    "candidates": 1900
+   },
+   {
+    "guess": "tarik",
+    "bits": 5.738242921361902,
+    "parts": 133,
+    "is_candidate": false,
+    "candidates": 1900
+   },
+   {
+    "guess": "kamer",
+    "bits": 5.733499679288841,
+    "parts": 139,
+    "is_candidate": false,
+    "candidates": 1900
+   },
+   {
+    "guess": "merak",
+    "bits": 5.714599636577942,
+    "parts": 134,
+    "is_candidate": true,
+    "candidates": 1900
+   },
+   {
+    "guess": "serak",
+    "bits": 5.678874746816493,
+    "parts": 132,
+    "is_candidate": false,
+    "candidates": 1900
+   },
+   {
+    "guess": "karni",
+    "bits": 5.668094192948413,
+    "parts": 126,
+    "is_candidate": false,
+    "candidates": 1900
+   },
+   {
+    "guess": "malik",
+    "bits": 5.6557577555124245,
+    "parts": 131,
+    "is_candidate": true,
+    "candidates": 1900
+   },
+   {
+    "guess": "kelam",
+    "bits": 5.6551136439965894,
+    "parts": 135,
+    "is_candidate": false,
+    "candidates": 1900
+   },
+   {
+    "guess": "kalem",
+    "bits": 5.651485912322651,
+    "parts": 134,
+    "is_candidate": true,
+    "candidates": 1900
+   },
+   {
+    "guess": "kamil",
+    "bits": 5.651452566273441,
+    "parts": 139,
+    "is_candidate": true,
+    "candidates": 1900
+   }
+  ],
+  "most_parts": [
+   {
+    "guess": "kerim",
+    "bits": 5.613647948617285,
+    "parts": 143,
+    "is_candidate": true,
+    "candidates": 1900
+   },
+   {
+    "guess": "melik",
+    "bits": 5.456540224448139,
+    "parts": 140,
+    "is_candidate": false,
+    "candidates": 1900
+   },
+   {
+    "guess": "kamer",
+    "bits": 5.7713472521953815,
+    "parts": 139,
+    "is_candidate": false,
+    "candidates": 1900
+   },
+   {
+    "guess": "kamil",
+    "bits": 5.693129192087154,
+    "parts": 139,
+    "is_candidate": true,
+    "candidates": 1900
+   },
+   {
+    "guess": "serim",
+    "bits": 5.3278328814043565,
+    "parts": 137,
+    "is_candidate": false,
+    "candidates": 1900
+   },
+   {
+    "guess": "kesin",
+    "bits": 5.364405263958708,
+    "parts": 136,
+    "is_candidate": true,
+    "candidates": 1900
+   },
+   {
+    "guess": "senir",
+    "bits": 5.289458093455593,
+    "parts": 136,
+    "is_candidate": false,
+    "candidates": 1900
+   },
+   {
+    "guess": "kelam",
+    "bits": 5.692321103019969,
+    "parts": 135,
+    "is_candidate": false,
+    "candidates": 1900
+   },
+   {
+    "guess": "serin",
+    "bits": 5.336113050362945,
+    "parts": 135,
+    "is_candidate": true,
+    "candidates": 1900
+   },
+   {
+    "guess": "merak",
+    "bits": 5.7427752265272956,
+    "parts": 134,
+    "is_candidate": true,
+    "candidates": 1900
+   }
+  ]
+ },
+ "worked_example": {
+  "history": [
+   {
+    "guess": "erika",
+    "pattern": "⬜⬜⬜⬜🟩"
+   },
+   {
+    "guess": "dolma",
+    "pattern": "⬜⬜⬜🟩🟩"
+   },
+   {
+    "guess": "sıtma",
+    "pattern": "🟩⬜⬜🟩🟩"
+   }
+  ],
+  "candidates": [
+   "saçma",
+   "sanma",
+   "sapma",
+   "savma",
+   "sayma"
+  ],
+  "guesses": [
+   {
+    "guess": "saçma",
+    "is_candidate": true,
+    "parts": [
+     {
+      "pattern": "🟩🟩⬜🟩🟩",
+      "words": [
+       "sanma",
+       "sapma",
+       "savma",
+       "sayma"
+      ]
+     },
+     {
+      "pattern": "🟩🟩🟩🟩🟩",
+      "words": [
+       "saçma"
+      ]
+     }
+    ],
+    "sizes": [
+     4,
+     1
+    ],
+    "bits": 0.7219280948873623
+   },
+   {
+    "guess": "avunç",
+    "is_candidate": false,
+    "parts": [
+     {
+      "pattern": "🟨⬜⬜⬜⬜",
+      "words": [
+       "sapma",
+       "sayma"
+      ]
+     },
+     {
+      "pattern": "🟨⬜⬜⬜🟨",
+      "words": [
+       "saçma"
+      ]
+     },
+     {
+      "pattern": "🟨⬜⬜🟨⬜",
+      "words": [
+       "sanma"
+      ]
+     },
+     {
+      "pattern": "🟨🟨⬜⬜⬜",
+      "words": [
+       "savma"
+      ]
+     }
+    ],
+    "sizes": [
+     2,
+     1,
+     1,
+     1
+    ],
+    "bits": 1.9219280948873623
+   }
+  ]
+ },
+ "frequency_failures": {
+  "words": [
+   "atmak",
+   "cenin",
+   "karar",
+   "kazak",
+   "kısık",
+   "kuşak",
+   "kütük",
+   "savma",
+   "sayma",
+   "tatlı",
+   "terzi",
+   "yapma",
+   "yazma",
+   "zarar"
+  ],
+  "guesses": {
+   "frequency": {
+    "atmak": 7,
+    "cenin": 7,
+    "karar": 7,
+    "kazak": 7,
+    "kısık": 7,
+    "kuşak": 7,
+    "kütük": 7,
+    "savma": 7,
+    "sayma": 8,
+    "tatlı": 7,
+    "terzi": 7,
+    "yapma": 7,
+    "yazma": 8,
+    "zarar": 7
+   },
+   "entropy": {
+    "atmak": 3,
+    "cenin": 4,
+    "karar": 4,
+    "kazak": 4,
+    "kısık": 4,
+    "kuşak": 4,
+    "kütük": 3,
+    "savma": 4,
+    "sayma": 3,
+    "tatlı": 5,
+    "terzi": 4,
+    "yapma": 4,
+    "yazma": 5,
+    "zarar": 4
+   },
+   "entropy_candidates": {
+    "atmak": 6,
+    "cenin": 3,
+    "karar": 5,
+    "kazak": 6,
+    "kısık": 3,
+    "kuşak": 5,
+    "kütük": 3,
+    "savma": 5,
+    "sayma": 6,
+    "tatlı": 4,
+    "terzi": 5,
+    "yapma": 4,
+    "yazma": 5,
+    "zarar": 3
+   },
+   "entropy_freq": {
+    "atmak": 3,
+    "cenin": 4,
+    "karar": 3,
+    "kazak": 4,
+    "kısık": 4,
+    "kuşak": 4,
+    "kütük": 3,
+    "savma": 4,
+    "sayma": 5,
+    "tatlı": 4,
+    "terzi": 5,
+    "yapma": 4,
+    "yazma": 4,
+    "zarar": 4
+   },
+   "most_parts": {
+    "atmak": 3,
+    "cenin": 4,
+    "karar": 3,
+    "kazak": 5,
+    "kısık": 3,
+    "kuşak": 4,
+    "kütük": 4,
+    "savma": 5,
+    "sayma": 4,
+    "tatlı": 5,
+    "terzi": 4,
+    "yapma": 4,
+    "yazma": 4,
+    "zarar": 5
+   }
+  }
+ },
+ "games": {
+  "frequency": {
+   "agent": "frequency",
+   "answer": "sayma",
+   "guesses": 8,
+   "turns": [
+    {
+     "guess": "erika",
+     "pattern": "⬜⬜⬜⬜🟩",
+     "bits": null,
+     "is_candidate": true,
+     "candidates_left": 84,
+     "remaining": []
+    },
+    {
+     "guess": "dolma",
+     "pattern": "⬜⬜⬜🟩🟩",
+     "bits": null,
+     "is_candidate": true,
+     "candidates_left": 20,
+     "remaining": []
+    },
+    {
+     "guess": "sıtma",
+     "pattern": "🟩⬜⬜🟩🟩",
+     "bits": null,
+     "is_candidate": true,
+     "candidates_left": 5,
+     "remaining": [
+      "saçma",
+      "sanma",
+      "sapma",
+      "savma",
+      "sayma"
+     ]
+    },
+    {
+     "guess": "saçma",
+     "pattern": "🟩🟩⬜🟩🟩",
+     "bits": null,
+     "is_candidate": true,
+     "candidates_left": 4,
+     "remaining": [
+      "sanma",
+      "sapma",
+      "savma",
+      "sayma"
+     ]
+    },
+    {
+     "guess": "sanma",
+     "pattern": "🟩🟩⬜🟩🟩",
+     "bits": null,
+     "is_candidate": true,
+     "candidates_left": 3,
+     "remaining": [
+      "sapma",
+      "savma",
+      "sayma"
+     ]
+    },
+    {
+     "guess": "sapma",
+     "pattern": "🟩🟩⬜🟩🟩",
+     "bits": null,
+     "is_candidate": true,
+     "candidates_left": 2,
+     "remaining": [
+      "savma",
+      "sayma"
+     ]
+    },
+    {
+     "guess": "savma",
+     "pattern": "🟩🟩⬜🟩🟩",
+     "bits": null,
+     "is_candidate": true,
+     "candidates_left": 1,
+     "remaining": [
+      "sayma"
+     ]
+    },
+    {
+     "guess": "sayma",
+     "pattern": "🟩🟩🟩🟩🟩",
+     "bits": null,
+     "is_candidate": true,
+     "candidates_left": 1,
+     "remaining": [
+      "sayma"
+     ]
+    }
+   ]
+  },
+  "entropy": {
+   "agent": "entropy",
+   "answer": "sayma",
+   "guesses": 3,
+   "turns": [
+    {
+     "guess": "kamer",
+     "pattern": "⬜🟩🟨⬜⬜",
+     "bits": 5.7713472521953815,
+     "is_candidate": false,
+     "candidates_left": 51,
+     "remaining": []
+    },
+    {
+     "guess": "salya",
+     "pattern": "🟩🟩⬜🟨🟩",
+     "bits": 4.099114931039583,
+     "is_candidate": false,
+     "candidates_left": 1,
+     "remaining": [
+      "sayma"
+     ]
+    },
+    {
+     "guess": "sayma",
+     "pattern": "🟩🟩🟩🟩🟩",
+     "bits": 0.0,
+     "is_candidate": true,
+     "candidates_left": 1,
+     "remaining": [
+      "sayma"
+     ]
+    }
+   ]
+  },
+  "entropy_candidates": {
+   "agent": "entropy_candidates",
+   "answer": "sayma",
+   "guesses": 6,
+   "turns": [
+    {
+     "guess": "kenar",
+     "pattern": "⬜⬜⬜🟨⬜",
+     "bits": 5.75712346584563,
+     "is_candidate": true,
+     "candidates_left": 191,
+     "remaining": []
+    },
+    {
+     "guess": "talim",
+     "pattern": "⬜🟩⬜⬜🟨",
+     "bits": 4.9873640356585724,
+     "is_candidate": true,
+     "candidates_left": 14,
+     "remaining": []
+    },
+    {
+     "guess": "sapma",
+     "pattern": "🟩🟩⬜🟩🟩",
+     "bits": 3.039148671903071,
+     "is_candidate": true,
+     "candidates_left": 3,
+     "remaining": [
+      "saçma",
+      "savma",
+      "sayma"
+     ]
+    },
+    {
+     "guess": "saçma",
+     "pattern": "🟩🟩⬜🟩🟩",
+     "bits": 0.9182958340544894,
+     "is_candidate": true,
+     "candidates_left": 2,
+     "remaining": [
+      "savma",
+      "sayma"
+     ]
+    },
+    {
+     "guess": "savma",
+     "pattern": "🟩🟩⬜🟩🟩",
+     "bits": 1.0,
+     "is_candidate": true,
+     "candidates_left": 1,
+     "remaining": [
+      "sayma"
+     ]
+    },
+    {
+     "guess": "sayma",
+     "pattern": "🟩🟩🟩🟩🟩",
+     "bits": 0.0,
+     "is_candidate": true,
+     "candidates_left": 1,
+     "remaining": [
+      "sayma"
+     ]
+    }
+   ]
+  },
+  "entropy_freq": {
+   "agent": "entropy_freq",
+   "answer": "sayma",
+   "guesses": 5,
+   "turns": [
+    {
+     "guess": "kenar",
+     "pattern": "⬜⬜⬜🟨⬜",
+     "bits": 5.757439928625876,
+     "is_candidate": true,
+     "candidates_left": 191,
+     "remaining": []
+    },
+    {
+     "guess": "salim",
+     "pattern": "🟩🟩⬜⬜🟨",
+     "bits": 4.964930709002864,
+     "is_candidate": true,
+     "candidates_left": 6,
+     "remaining": [
+      "saçma",
+      "samba",
+      "sapma",
+      "satma",
+      "savma",
+      "sayma"
+     ]
+    },
+    {
+     "guess": "çaput",
+     "pattern": "⬜🟩⬜⬜⬜",
+     "bits": 1.8305612622333145,
+     "is_candidate": false,
+     "candidates_left": 3,
+     "remaining": [
+      "samba",
+      "savma",
+      "sayma"
+     ]
+    },
+    {
+     "guess": "savma",
+     "pattern": "🟩🟩⬜🟩🟩",
+     "bits": 1.5752739262407822,
+     "is_candidate": true,
+     "candidates_left": 1,
+     "remaining": [
+      "sayma"
+     ]
+    },
+    {
+     "guess": "sayma",
+     "pattern": "🟩🟩🟩🟩🟩",
+     "bits": 0.0,
+     "is_candidate": true,
+     "candidates_left": 1,
+     "remaining": [
+      "sayma"
+     ]
+    }
+   ]
+  },
+  "most_parts": {
+   "agent": "most_parts",
+   "answer": "sayma",
+   "guesses": 4,
+   "turns": [
+    {
+     "guess": "kerim",
+     "pattern": "⬜⬜⬜⬜🟨",
+     "bits": 5.613647948617285,
+     "is_candidate": true,
+     "candidates_left": 76,
+     "remaining": []
+    },
+    {
+     "guess": "sanal",
+     "pattern": "🟩🟩⬜🟨⬜",
+     "bits": 4.739988580099799,
+     "is_candidate": false,
+     "candidates_left": 6,
+     "remaining": [
+      "saçma",
+      "samba",
+      "sapma",
+      "satma",
+      "savma",
+      "sayma"
+     ]
+    },
+    {
+     "guess": "bayat",
+     "pattern": "⬜🟩🟩🟨⬜",
+     "bits": 1.792481250360578,
+     "is_candidate": false,
+     "candidates_left": 1,
+     "remaining": [
+      "sayma"
+     ]
+    },
+    {
+     "guess": "sayma",
+     "pattern": "🟩🟩🟩🟩🟩",
+     "bits": 0.0,
+     "is_candidate": true,
+     "candidates_left": 1,
+     "remaining": [
+      "sayma"
+     ]
+    }
+   ]
+  }
+ }
+}

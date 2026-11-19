@@ -98,8 +98,16 @@ def test_script_play():
 
 
 def test_script_assist_detects_contradictions():
-    out = run_play("assist", "--no-color", stdin="\nxxxxg\n\nxxxgg\nkalem\nggggg\nsaçma\nggxgg\nquit\n")
+    out = run_play("assist", "--agent", "frequency", "--no-color",
+                   stdin="\nxxxxg\n\nxxxgg\nkalem\nggggg\nsaçma\nggxgg\nquit\n")
     assert "Suggestion: ERİKA" in out
     assert "Known: Letter 4 is M; letter 5 is A" in out
     assert "Contradictory input" in out
     assert "Candidates:" in out
+
+
+def test_script_watch_entropy_shows_bits():
+    out = run_play("watch", "--word", "sayma", "--no-color")  # entropy is the default agent
+    assert "entropy agent" in out
+    assert "1. KAMER  ⬜🟩🟨⬜⬜  5.77 bits" in out
+    assert "Solved in 3 guesses." in out
