@@ -13,8 +13,8 @@ and ends with a playable web demo.
 | Week | Topic | Owner | Status |
 | --- | --- | --- | --- |
 | 6 | Problem definition, Turkish alphabet, word lists, statistics, literature | Faruk | ✅ done: [doc](docs/week6_problem_and_literature.md) |
-| 7 | Feedback, game, agent interface, baselines, evaluation | Arda | ⏳ next |
-| 8 | Constraints, CSP solver, pattern table, filter benchmark | Berken | – |
+| 7 | Feedback, game, agent interface, baselines, evaluation | Arda | ✅ done: [doc](docs/week7_environment_and_baselines.md) |
+| 8 | Constraints, CSP solver, pattern table, filter benchmark | Berken | ⏳ next (`Constraints` already used by `assist`) |
 | 9 | Entropy (information-gain) agent | Arda | – |
 | 10 | Expectimax search and oracle | Berken | – |
 | 11 | Experiments and analysis | Faruk | – |
@@ -38,8 +38,21 @@ python -m pytest                    # slow tests are skipped; add --runslow to i
 | --- | --- |
 | `python scripts/build_word_lists.py` | Builds `data/guesses.txt`, `data/answers.txt`, `data/frequencies.tsv` from `data/raw/`; step counts → `results/word_lists.json` |
 | `python scripts/word_stats.py` | Letter frequencies, repeated letters, best openers, one-letter families → `results/word_stats.json`, `results/letter_frequency.png` |
+| `python scripts/evaluate.py` | Runs agents on every answer (unlimited guesses; random agents over `--seeds 5`) → `results/baselines.json`, `results/baselines.md`, `results/guess_distribution.png`. Options: `--agent NAME` (repeatable), `--sample N`, `--filter {feedback,constraints}`, `--max-guesses N` |
+| `python scripts/play.py play` | Play in the terminal (coloured tiles, Turkish keyboard; `--no-color` for emoji) |
+| `python scripts/play.py watch --agent frequency --word kalem` | Watch an agent solve a word turn by turn |
+| `python scripts/play.py assist` | Suggestions while you play on another site: type your word (Enter = suggestion) and its colours (`g`/`y`/`x`) |
 
 Every script has `--help`.
+
+## Results so far
+
+All 1,900 answers, unlimited guesses ([`results/baselines.md`](results/baselines.md)):
+
+| Agent | Mean guesses | % solved ≤ 6 | Max |
+| --- | ---: | ---: | ---: |
+| random (5 seeds) | 4.1126 ± 0.0352 | 98.38 | 9 |
+| letter frequency | 3.7400 | 99.26 | 8 |
 
 ## Word lists
 
@@ -62,6 +75,12 @@ wordle_tr/       importable package
   alphabet.py      Turkish alphabet, case conversion, normalize, is_valid_word, sort_key   (Faruk)
   words.py         load_guesses / load_answers / encode, word-list build pipeline          (Faruk)
   stats.py         word-list statistics                                                     (Faruk)
+  feedback.py      feedback(), pattern encoding, emoji, parse_pattern, reference filter     (Arda)
+  game.py          WordleGame, InvalidGuessError                                            (Arda)
+  agents/          Agent interface, registry (make_agent), RandomAgent, LetterFrequencyAgent (Arda)
+  simulate.py      play_game, evaluate, summarize                                           (Arda)
+  constraints.py   Constraints, ContradictionError, describe()                              (Berken)
+  filters.py       candidate filters behind one interface                                   (Berken)
 scripts/         thin command-line wrappers around the package
 tests/           pytest suite
 data/            word lists, excluded answers, frequencies, raw sources

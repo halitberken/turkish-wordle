@@ -2,8 +2,11 @@
 
 from __future__ import annotations
 
+import random
+
 import pytest
 
+from wordle_tr.feedback import feedback
 from wordle_tr.words import load_answers, load_guesses
 
 
@@ -28,3 +31,15 @@ def guesses() -> list[str]:
 @pytest.fixture(scope="session")
 def answers() -> list[str]:
     return load_answers()
+
+
+@pytest.fixture(scope="session")
+def random_histories(answers, guesses) -> list[tuple[str, list[tuple[str, int]]]]:
+    """300 game states (seed 1234): a hidden answer and 1-4 random guesses with their patterns."""
+    rng = random.Random(1234)
+    states = []
+    for _ in range(300):
+        answer = rng.choice(answers)
+        history = [(g, feedback(g, answer)) for g in rng.sample(guesses, rng.randint(1, 4))]
+        states.append((answer, history))
+    return states
