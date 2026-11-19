@@ -1,0 +1,26 @@
+$ python scripts/play.py watch --agent frequency --word sayma --no-color
+frequency agent, hidden word SAYMA, 1,900 candidates
+ 1. ERİKA  ⬜⬜⬜⬜🟩   84 candidates left
+ 2. DOLMA  ⬜⬜⬜🟩🟩   20 candidates left
+ 3. SITMA  🟩⬜⬜🟩🟩   5 candidates left: SAÇMA, SANMA, SAPMA, SAVMA, SAYMA
+ 4. SAÇMA  🟩🟩⬜🟩🟩   4 candidates left: SANMA, SAPMA, SAVMA, SAYMA
+ 5. SANMA  🟩🟩⬜🟩🟩   3 candidates left: SAPMA, SAVMA, SAYMA
+ 6. SAPMA  🟩🟩⬜🟩🟩   2 candidates left: SAVMA, SAYMA
+ 7. SAVMA  🟩🟩⬜🟩🟩   1 candidate left: SAYMA
+ 8. SAYMA  🟩🟩🟩🟩🟩
+Solved in 8 guesses.
+
+$ python scripts/play.py watch --agent entropy --word sayma --no-color
+entropy agent, hidden word SAYMA, 1,900 candidates
+ 1. KAMER  ⬜🟩🟨⬜⬜  5.77 bits   51 candidates left
+ 2. SALYA  🟩🟩⬜🟨🟩  4.10 bits   1 candidate left: SAYMA
+ 3. SAYMA  🟩🟩🟩🟩🟩  0.00 bits
+Solved in 3 guesses.
+
+$ python scripts/play.py watch --agent expectimax --word sayma --no-color
+expectimax agent, hidden word SAYMA, 1,900 candidates
+ 1. TARİK  ⬜🟩⬜⬜⬜  3.410 expected   150 candidates left
+ 2. YILAN  🟨⬜⬜🟨⬜  2.907 expected   5 candidates left: FAYDA, HAYDA, MAFYA, SAYFA, SAYMA
+ 3. FAYDA  ⬜🟩🟩⬜🟩  1.800 expected   1 candidate left: SAYMA
+ 4. SAYMA  🟩🟩🟩🟩🟩  1.000 expected
+Solved in 4 guesses.

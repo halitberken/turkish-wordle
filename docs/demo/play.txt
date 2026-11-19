@@ -1,0 +1,32 @@
+$ python scripts/play.py play --seed 2026 --no-color
+Guess the 5-letter Turkish word in 6 tries (game seed 2026). Type 'quit' to give up.
+
+Guess 1/6: kalemi
+  'kalemi' is not 5 Turkish letters, try again
+
+Guess 1/6: kamer
+
+  KAMER  ⬜⬜⬜⬜⬜
+
+green: -   yellow: -   not in word: K A M E R
+
+Guess 2/6: gusül
+
+  KAMER  ⬜⬜⬜⬜⬜
+  GUSÜL  ⬜🟩⬜⬜🟩
+
+green: U L   yellow: -   not in word: K A M E R G S Ü
+
+Guess 3/6: buzul
+
+  KAMER  ⬜⬜⬜⬜⬜
+  GUSÜL  ⬜🟩⬜⬜🟩
+  BUZUL  🟩🟩🟩🟩🟩
+
+green: U L B Z   yellow: -   not in word: K A M E R G S Ü
+
+Solved in 3/6!
+
+⬜⬜⬜⬜⬜
+⬜🟩⬜⬜🟩
+🟩🟩🟩🟩🟩

@@ -1,0 +1,33 @@
+$ python scripts/play.py assist --no-color
+For each turn, type the word you tried (Enter = the suggestion) and the colours you got:
+g = green, y = yellow, x or . = grey (e.g. gyxxg; emoji work too). Type 'quit' to stop.
+
+Turn 1: 1,900 candidates left. Suggestion: KAMER (5.77 bits expected)
+  word you tried: 
+  colours for KAMER: ggxxx
+  KAMER  🟩🟩⬜⬜⬜
+  Known: Letter 1 is K; letter 2 is A; not in word: E, M, R
+
+Turn 2: 55 candidates left. Suggestion: YILAN (4.08 bits expected)
+  word you tried: 
+  colours for YILAN: xxxxx
+  Contradictory input: A must appear at least 1 and at most 0 times. Enter this turn again.
+
+Turn 2: 55 candidates left. Suggestion: YILAN (4.08 bits expected)
+  word you tried: 
+  colours for YILAN: xxxgx
+  YILAN  ⬜⬜⬜🟩⬜
+  Known: Letter 1 is K; letter 2 is A; letter 4 is A; not in word: E, I, L, M, N, R, Y
+  Candidates: KABAK, KAÇAK, KAKAO, KAPAK, KASAP, KAZAK
+
+Turn 3: 6 candidates left. Suggestion: BOZUK (2.25 bits expected)
+  word you tried: 
+  colours for BOZUK: xxgxg
+  BOZUK  ⬜⬜🟩⬜🟩
+  Known: Letter 1 is K; letter 2 is A; letter 3 is Z; letter 4 is A; letter 5 is K; not in word: B, E, I, L, M, N, O, R, U, Y
+  Candidates: KAZAK
+
+Turn 4: 1 candidate left. Suggestion: KAZAK (0.00 bits expected)
+  word you tried: 
+  colours for KAZAK: ggggg
+  Solved in 4!
