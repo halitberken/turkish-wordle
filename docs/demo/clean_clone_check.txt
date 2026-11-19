@@ -1,0 +1,139 @@
+Clean-clone check (hand-in requirement): a fresh clone of the repository, a fresh
+virtual environment, `pip install -r requirements.txt`, the test suite, and every
+command listed in README.md. Interactive modes get their keyboard input from printf.
+Each step shows the last lines of its output, then its exit code and duration.
+<repo> is the working copy, <clone> the fresh clone.
+
+clean-clone check of commit 87146b8, 2026-11-19T10:35Z
+
+$ git clone -q <repo> <clone>
+[exit 0, 0.0 s]
+
+$ python3 -m venv .venv
+[exit 0, 1.6 s]
+
+$ .venv/bin/pip install -q -r requirements.txt
+[notice] A new release of pip is available: 26.2.1 -> 26.3
+[notice] To update, run: <clone>/.venv/bin/python3 -m pip install --upgrade pip
+[exit 0, 4.7 s]
+
+$ .venv/bin/python --version
+Python 3.14.7
+[exit 0, 0.0 s]
+
+$ .venv/bin/python -m pytest -q
+151 passed, 1 skipped in 24.22s
+[exit 0, 24.4 s]
+
+$ .venv/bin/python scripts/build_word_lists.py
+excluded answers: boklu, kahpe, nonoş, penis, porno, taşak, yarak
+
+wrote guesses.txt (5370), answers.txt (1900) and frequencies.tsv to <clone>/data; step counts to <clone>/results/word_lists.json
+[exit 0, 0.4 s]
+
+$ .venv/bin/python scripts/word_stats.py
+best openers (answer list): ERİKA 1.770, KREMA 1.715, MERAK 1.715, EKRAN 1.708, KENAR 1.708
+answers with a one-letter neighbour: 61.63%; largest family SA_MA (8)
+wrote <clone>/results/word_stats.json and <clone>/results/letter_frequency.png
+[exit 0, 0.6 s]
+
+$ .venv/bin/python scripts/evaluate.py
+random     mean 4.1126 ± 0.0352, within 6: 98.38 %, failures 30.8, max 9, first guess ÜZGÜN
+frequency  mean 3.7400, within 6: 99.26 %, failures 14.0, max 8, first guess ERİKA
+wrote <clone>/results/baselines.json, baselines.md and guess_distribution.png
+[exit 0, 28.2 s]
+
+$ .venv/bin/python scripts/evaluate.py --agent random --agent frequency --agent entropy --agent entropy_candidates --agent entropy_freq --agent most_parts --filter table --name entropy_agents
+entropy_freq mean 3.4479, within 6: 100.00 %, failures 0.0, max 5, first guess KENAR
+most_parts mean 3.4184, within 6: 100.00 %, failures 0.0, max 5, first guess KERİM
+wrote <clone>/results/entropy_agents.json, entropy_agents.md and entropy_agents_guess_distribution.png
+[exit 0, 26.0 s]
+
+$ .venv/bin/python scripts/benchmark_filters.py --full-check --end-to-end
+  frequency agent, table       filter:   0.50 s total,   0.10 s filtering, mean 3.7400, identical: True
+
+wrote <clone>/results/filters.json and filters.md
+[exit 0, 42.3 s]
+
+$ .venv/bin/python scripts/entropy_examples.py
+  most_parts          max 5, total 57
+
+wrote <clone>/results/entropy_examples.json and entropy_examples.md
+[exit 0, 1.5 s]
+
+$ .venv/bin/python scripts/expectimax_study.py
+
+optimum over all openers: between 2.9242 (bound) and 3.4095 (exact with TARİK)
+wrote <clone>/results/expectimax.json and expectimax.md
+[exit 0, 425.0 s]
+
+$ .venv/bin/python scripts/experiments.py
+  expectimax d=2 k=10  -> expectimax d=2 k=25  +0.0000 [+0.0000, +0.0000]  p = 1.0000
+
+wrote <clone>/results/comparison.json, comparison.md and three charts
+[exit 0, 63.3 s]
+
+$ .venv/bin/python scripts/make_demo.py
+wrote <clone>/docs/demo/play.txt (32 lines)
+wrote <clone>/docs/demo/assist.txt (33 lines)
+wrote <clone>/docs/demo/test_run.txt (162 lines)
+[exit 0, 26.4 s]
+
+$ printf 'kapak\nkalem\n' | .venv/bin/python scripts/play.py play --word kalem --no-color
+
+🟩🟩⬜⬜⬜
+🟩🟩🟩🟩🟩
+[exit 0, 0.1 s]
+
+$ .venv/bin/python scripts/play.py watch --agent expectimax --word sayma --no-color
+ 3. FAYDA  ⬜🟩🟩⬜🟩  1.800 expected   1 candidate left: SAYMA
+ 4. SAYMA  🟩🟩🟩🟩🟩  1.000 expected
+Solved in 4 guesses.
+[exit 0, 4.5 s]
+
+$ printf '\nggxxx\nquit\n' | .venv/bin/python scripts/play.py assist --no-color
+
+Turn 2: 55 candidates left. Suggestion: YILAN (4.08 bits expected)
+  word you tried: [exit 0, 0.1 s]
+
+$ git status --short   # outputs that differ from the committed files
+ M docs/demo/test_run.txt
+ M results/baselines.json
+ M results/baselines.md
+ M results/comparison.json
+ M results/comparison.md
+ M results/entropy_agents.json
+ M results/entropy_agents.md
+ M results/expectimax.json
+ M results/expectimax.md
+ M results/filters.json
+ M results/filters.md
+
+$ git diff --stat
+ docs/demo/test_run.txt      |  2 +-
+ results/baselines.json      | 46 ++++++++++++------------
+ results/baselines.md        |  4 +--
+ results/comparison.json     | 44 +++++++++++------------
+ results/comparison.md       | 20 +++++------
+ results/entropy_agents.json | 86 +++++++++++++++++++++++----------------------
+ results/entropy_agents.md   | 12 +++----
+ results/expectimax.json     | 70 ++++++++++++++++++------------------
+ results/expectimax.md       | 44 +++++++++++------------
+ results/filters.json        | 58 +++++++++++++++---------------
+ results/filters.md          | 26 +++++++-------
+ 11 files changed, 208 insertions(+), 204 deletions(-)
+
+Summary
+-------
+* Every step exited with 0; the test suite passed (151 passed, 1 slow test skipped).
+* Regenerated outputs that are byte-identical to the committed files: data/guesses.txt,
+  data/answers.txt, data/frequencies.tsv, results/word_lists.json, results/word_stats.json,
+  results/entropy_examples.json/.md, every chart (*.png), and docs/demo/watch.txt,
+  play.txt, assist.txt.
+* The 11 files listed by `git status` differ only in measured times (milliseconds and
+  seconds, which depend on the machine), the duration line of the test run, and the
+  output folder recorded in results/expectimax.json. All guess counts, means, intervals,
+  p-values, exact optima and benchmark agreement checks are identical.
+* results/baselines.json and results/entropy_agents.json had been written before
+  evaluate.py gained two configuration fields (expectimax_depth, expectimax_width, both
+  empty for these runs); they were regenerated with the current code after this check.

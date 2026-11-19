@@ -160,7 +160,7 @@ seeds or a different statistic (for example the standard error); we cannot
 tell from the specification.
 
 **Speed** (machine-dependent): the frequency agent needs 0.051 ms per
-decision. The reference filter needs 0.553 ms per guess on average; most
+decision. The reference filter needs 0.549 ms per guess on average; most
 filtering happens on small candidate sets after the first guess. A full
 1,900-game evaluation takes about 4 seconds per agent with this filter. Week 8
 compares the filters: with the pattern table, the same frequency-agent

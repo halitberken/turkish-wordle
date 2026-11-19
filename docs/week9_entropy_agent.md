@@ -50,7 +50,7 @@ that equal patterns form runs. Each run is one part, and its length is the
 part size c. Then H = log2 n − (Σ c log2 c) / n for all 5,370 guesses at once,
 in numpy. The weighted version used by the prior variant sums the prior
 weights of each run instead. On the full evaluation the entropy agent needs
-0.933 ms per decision (`results/entropy_agents.md`).
+0.888 ms per decision (`results/entropy_agents.md`).
 
 ## 2. Worked example
 
@@ -135,17 +135,17 @@ All 1,900 answers, unlimited guesses, pattern-table filter
 | Agent | First guess | Mean guesses | % solved ≤ 6 | Failures (> 6) | Max | Agent ms / guess |
 | --- | --- | ---: | ---: | ---: | ---: | ---: |
 | random (5 seeds) | ÜZGÜN (seed 0) | 4.1126 ± 0.0352 | 98.38 ± 0.21 | 30.8 | 9 | 0.001 |
-| frequency | ERİKA | 3.7400 | 99.26 | 14 | 8 | 0.052 |
-| **entropy** | KAMER | **3.4479** | **100.00** | **0** | **5** | 0.933 |
-| entropy_candidates | KENAR | 3.5189 | 99.89 | 2 | 7 | 0.081 |
-| entropy_freq | KENAR | 3.4479 | 100.00 | 0 | 5 | 1.525 |
-| most_parts | KERİM | **3.4184** | 100.00 | 0 | 5 | 1.152 |
+| frequency | ERİKA | 3.7400 | 99.26 | 14 | 8 | 0.048 |
+| **entropy** | KAMER | **3.4479** | **100.00** | **0** | **5** | 0.888 |
+| entropy_candidates | KENAR | 3.5189 | 99.89 | 2 | 7 | 0.075 |
+| entropy_freq | KENAR | 3.4479 | 100.00 | 0 | 5 | 1.448 |
+| most_parts | KERİM | **3.4184** | 100.00 | 0 | 5 | 1.100 |
 
 ![Guess-count distribution](../results/entropy_agents_guess_distribution.png)
 
 * **Entropy clearly beats the baselines.** The mean drops from 3.7400 to
   3.4479. Every word is solved within 5 guesses, so there are no failures
-  instead of 14. The full evaluation takes 6.23 s of agent and filter time
+  instead of 14. The full evaluation takes 5.93 s of agent and filter time
   (`total_time_s` in `results/entropy_agents.json`), well under the one-minute
   target.
 * **Non-candidate guesses matter.** Restricted to candidates, the same rule
