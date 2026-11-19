@@ -28,10 +28,11 @@ from wordle_tr.words import load_answers, load_guesses  # noqa: E402
 LIMIT = 6
 
 
-def run_agent(name: str, seeds: list[int], answers, guesses, filter_fn, max_guesses, words) -> dict:
+def run_agent(name: str, seeds: list[int], answers, guesses, filter_fn, max_guesses, words,
+              **options) -> dict:
     agent_runs = []
     for seed in seeds:
-        agent = make_agent(name, seed)
+        agent = make_agent(name, seed, **options)
         results = evaluate(agent, answers, guesses, filter_fn, max_guesses, words)
         summary = summarize(results, name, LIMIT)
         agent_runs.append((seed, results, summary))
@@ -182,6 +183,8 @@ def main() -> None:
                         help="random agents run with seeds 0..N-1 (default 5)")
     parser.add_argument("--max-guesses", type=int, default=None,
                         help="guess limit per game (default: unlimited)")
+    parser.add_argument("--depth", type=int, help="expectimax search depth (default 2)")
+    parser.add_argument("--width", type=int, help="expectimax beam width: top-k guesses by entropy (default 10)")
     parser.add_argument("--out-dir", type=Path, default=RESULTS_DIR, help="output folder")
     parser.add_argument("--name", default="baselines", help="output file name stem (default baselines)")
     args = parser.parse_args()
@@ -206,10 +209,13 @@ def main() -> None:
             "max_guesses": args.max_guesses,
             "limit": LIMIT,
             "seeds": list(range(args.seeds)),
+            "expectimax_depth": args.depth,
+            "expectimax_width": args.width,
             "words": words or answers,
         },
         "agents": {name: run_agent(name, list(range(args.seeds)), answers, guesses, filter_fn,
-                                   args.max_guesses, words) for name in names},
+                                   args.max_guesses, words, depth=args.depth, width=args.width)
+                   for name in names},
     }
 
     args.out_dir.mkdir(parents=True, exist_ok=True)

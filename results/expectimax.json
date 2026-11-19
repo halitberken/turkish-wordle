@@ -1,0 +1,402 @@
+{
+ "config": {
+  "depths": [
+   1,
+   2,
+   3
+  ],
+  "widths": [
+   10,
+   25,
+   50
+  ],
+  "small_sets": 200,
+  "max_small": 30,
+  "openers": 10,
+  "seed": 1234,
+  "out_dir": "/home/halight/Work/github.com/halitberken/turkish-wordle/results"
+ },
+ "reference": {
+  "entropy": {
+   "mean": 3.4478947368421053,
+   "max": 5,
+   "opener": "kamer"
+  },
+  "most_parts": {
+   "mean": 3.418421052631579,
+   "max": 5,
+   "opener": "kerim"
+  }
+ },
+ "grid": [
+  {
+   "depth": 1,
+   "width": 10,
+   "mean": 3.41,
+   "max": 5,
+   "failures": 0,
+   "histogram": {
+    "2": 78,
+    "3": 995,
+    "4": 797,
+    "5": 30
+   },
+   "opener": "tarik",
+   "predicted_at_opening": 3.4184210526315746,
+   "first_move_s": 2.004449443993508,
+   "total_s": 2.8338494380004704,
+   "nodes": 244,
+   "words_better_than_entropy": 465,
+   "words_worse_than_entropy": 397
+  },
+  {
+   "depth": 1,
+   "width": 25,
+   "mean": 3.41,
+   "max": 5,
+   "failures": 0,
+   "histogram": {
+    "2": 78,
+    "3": 995,
+    "4": 797,
+    "5": 30
+   },
+   "opener": "tarik",
+   "predicted_at_opening": 3.4184210526315746,
+   "first_move_s": 4.4593243099952815,
+   "total_s": 5.4564317379990825,
+   "nodes": 244,
+   "words_better_than_entropy": 465,
+   "words_worse_than_entropy": 397
+  },
+  {
+   "depth": 1,
+   "width": 50,
+   "mean": 3.41,
+   "max": 5,
+   "failures": 0,
+   "histogram": {
+    "2": 78,
+    "3": 995,
+    "4": 797,
+    "5": 30
+   },
+   "opener": "tarik",
+   "predicted_at_opening": 3.4184210526315746,
+   "first_move_s": 7.268851101005566,
+   "total_s": 8.578004551003687,
+   "nodes": 244,
+   "words_better_than_entropy": 465,
+   "words_worse_than_entropy": 397
+  },
+  {
+   "depth": 2,
+   "width": 10,
+   "mean": 3.409473684210526,
+   "max": 5,
+   "failures": 0,
+   "histogram": {
+    "2": 78,
+    "3": 996,
+    "4": 796,
+    "5": 30
+   },
+   "opener": "tarik",
+   "predicted_at_opening": 3.4099999999999957,
+   "first_move_s": 4.442458863995853,
+   "total_s": 5.0526473899954,
+   "nodes": 1069,
+   "words_better_than_entropy": 466,
+   "words_worse_than_entropy": 396
+  },
+  {
+   "depth": 2,
+   "width": 25,
+   "mean": 3.409473684210526,
+   "max": 5,
+   "failures": 0,
+   "histogram": {
+    "2": 78,
+    "3": 996,
+    "4": 796,
+    "5": 30
+   },
+   "opener": "tarik",
+   "predicted_at_opening": 3.4099999999999957,
+   "first_move_s": 14.482000514006359,
+   "total_s": 15.32666216501093,
+   "nodes": 1709,
+   "words_better_than_entropy": 466,
+   "words_worse_than_entropy": 396
+  },
+  {
+   "depth": 2,
+   "width": 50,
+   "mean": 3.409473684210526,
+   "max": 5,
+   "failures": 0,
+   "histogram": {
+    "2": 78,
+    "3": 996,
+    "4": 796,
+    "5": 30
+   },
+   "opener": "tarik",
+   "predicted_at_opening": 3.4099999999999957,
+   "first_move_s": 36.56736942399584,
+   "total_s": 37.90053235599771,
+   "nodes": 2477,
+   "words_better_than_entropy": 466,
+   "words_worse_than_entropy": 396
+  },
+  {
+   "depth": 3,
+   "width": 10,
+   "mean": 3.409473684210526,
+   "max": 5,
+   "failures": 0,
+   "histogram": {
+    "2": 78,
+    "3": 996,
+    "4": 796,
+    "5": 30
+   },
+   "opener": "tarik",
+   "predicted_at_opening": 3.4094736842105218,
+   "first_move_s": 5.173760232006316,
+   "total_s": 5.774632824002765,
+   "nodes": 4612,
+   "words_better_than_entropy": 466,
+   "words_worse_than_entropy": 396
+  },
+  {
+   "depth": 3,
+   "width": 25,
+   "mean": 3.409473684210526,
+   "max": 5,
+   "failures": 0,
+   "histogram": {
+    "2": 78,
+    "3": 996,
+    "4": 796,
+    "5": 30
+   },
+   "opener": "tarik",
+   "predicted_at_opening": 3.4094736842105218,
+   "first_move_s": 20.087044301995775,
+   "total_s": 20.929335724998964,
+   "nodes": 12787,
+   "words_better_than_entropy": 466,
+   "words_worse_than_entropy": 396
+  },
+  {
+   "depth": 3,
+   "width": 50,
+   "mean": 3.409473684210526,
+   "max": 5,
+   "failures": 0,
+   "histogram": {
+    "2": 78,
+    "3": 996,
+    "4": 796,
+    "5": 30
+   },
+   "opener": "tarik",
+   "predicted_at_opening": 3.4094736842105218,
+   "first_move_s": 61.47407802299131,
+   "total_s": 62.89581027899112,
+   "nodes": 28624,
+   "words_better_than_entropy": 466,
+   "words_worse_than_entropy": 396
+  }
+ ],
+ "small_sets": {
+  "count": 200,
+  "mean_size": 11.23,
+  "optimum_mean": 2.0094191570518274,
+  "policies": {
+   "entropy": {
+    "mean": 2.012618608440745,
+    "mean_gap": 0.003199451388918062,
+    "max_gap": 0.07142857142857162,
+    "optimal_sets": 187
+   },
+   "most_parts": {
+    "mean": 2.0118080994095466,
+    "mean_gap": 0.0023889423577193748,
+    "max_gap": 0.07142857142857162,
+    "optimal_sets": 191
+   },
+   "expectimax d=1 k=10": {
+    "mean": 2.0094191570518274,
+    "mean_gap": 6.661338147750939e-18,
+    "max_gap": 4.440892098500626e-16,
+    "optimal_sets": 200
+   },
+   "expectimax d=2 k=10": {
+    "mean": 2.0094191570518274,
+    "mean_gap": 6.661338147750939e-18,
+    "max_gap": 4.440892098500626e-16,
+    "optimal_sets": 200
+   },
+   "expectimax d=3 k=10": {
+    "mean": 2.0094191570518274,
+    "mean_gap": 6.661338147750939e-18,
+    "max_gap": 4.440892098500626e-16,
+    "optimal_sets": 200
+   }
+  }
+ },
+ "openers": [
+  {
+   "opener": "tarik",
+   "exact": 3.409473684210526,
+   "entropy_after": 3.418421052631579,
+   "expectimax_after": 3.409473684210526,
+   "parts": 133,
+   "is_answer": false,
+   "seconds": 16.603720437997254
+  },
+  {
+   "opener": "kerim",
+   "exact": 3.4121052631578945,
+   "entropy_after": 3.4305263157894736,
+   "expectimax_after": 3.4142105263157894,
+   "parts": 142,
+   "is_answer": true,
+   "seconds": 10.812648065999383
+  },
+  {
+   "opener": "serin",
+   "exact": 3.421052631578947,
+   "entropy_after": 3.4294736842105262,
+   "expectimax_after": 3.4210526315789473,
+   "parts": 134,
+   "is_answer": true,
+   "seconds": 2.641646033996949
+  },
+  {
+   "opener": "kamil",
+   "exact": 3.421578947368421,
+   "entropy_after": 3.4305263157894736,
+   "expectimax_after": 3.4221052631578948,
+   "parts": 138,
+   "is_answer": true,
+   "seconds": 12.62795427700621
+  },
+  {
+   "opener": "serim",
+   "exact": 3.4226315789473682,
+   "entropy_after": 3.4373684210526316,
+   "expectimax_after": 3.4226315789473682,
+   "parts": 137,
+   "is_answer": false,
+   "seconds": 12.97583609400317
+  },
+  {
+   "opener": "melik",
+   "exact": 3.4242105263157896,
+   "entropy_after": 3.4347368421052633,
+   "expectimax_after": 3.424736842105263,
+   "parts": 140,
+   "is_answer": false,
+   "seconds": 12.22811612499936
+  },
+  {
+   "opener": "malik",
+   "exact": 3.424736842105263,
+   "entropy_after": 3.437894736842105,
+   "expectimax_after": 3.4257894736842105,
+   "parts": 130,
+   "is_answer": true,
+   "seconds": 4.022446602990385
+  },
+  {
+   "opener": "karni",
+   "exact": 3.4294736842105262,
+   "entropy_after": 3.4394736842105265,
+   "expectimax_after": 3.43,
+   "parts": 126,
+   "is_answer": false,
+   "seconds": 12.990891371999169
+  },
+  {
+   "opener": "merak",
+   "exact": 3.4305263157894736,
+   "entropy_after": 3.442105263157895,
+   "expectimax_after": 3.4321052631578945,
+   "parts": 133,
+   "is_answer": true,
+   "seconds": 10.29096230000141
+  },
+  {
+   "opener": "senir",
+   "exact": 3.432105263157894,
+   "entropy_after": 3.446842105263158,
+   "expectimax_after": 3.4321052631578945,
+   "parts": 136,
+   "is_answer": false,
+   "seconds": 11.619450832004077
+  },
+  {
+   "opener": "serak",
+   "exact": 3.433684210526316,
+   "entropy_after": 3.448421052631579,
+   "expectimax_after": 3.4342105263157894,
+   "parts": 132,
+   "is_answer": false,
+   "seconds": 15.53907482798968
+  },
+  {
+   "opener": "kenar",
+   "exact": 3.4342105263157894,
+   "entropy_after": 3.445263157894737,
+   "expectimax_after": 3.4342105263157894,
+   "parts": 129,
+   "is_answer": true,
+   "seconds": 19.632825390988728
+  },
+  {
+   "opener": "kamer",
+   "exact": 3.4357894736842107,
+   "entropy_after": 3.4478947368421053,
+   "expectimax_after": 3.436315789473684,
+   "parts": 139,
+   "is_answer": false,
+   "seconds": 22.33511862400337
+  },
+  {
+   "opener": "kelam",
+   "exact": 3.436315789473684,
+   "entropy_after": 3.4489473684210528,
+   "expectimax_after": 3.438421052631579,
+   "parts": 135,
+   "is_answer": false,
+   "seconds": 11.041060132003622
+  },
+  {
+   "opener": "kalem",
+   "exact": 3.44,
+   "entropy_after": 3.448421052631579,
+   "expectimax_after": 3.4410526315789474,
+   "parts": 133,
+   "is_answer": true,
+   "seconds": 17.232570166001096
+  },
+  {
+   "opener": "kesin",
+   "exact": 3.4426315789473683,
+   "entropy_after": 3.455263157894737,
+   "expectimax_after": 3.4457894736842105,
+   "parts": 135,
+   "is_answer": true,
+   "seconds": 13.439419863992953
+  }
+ ],
+ "bounds": {
+  "lower": 2.9242105263157896,
+  "lower_opener": "kerim",
+  "best_exact": 3.409473684210526,
+  "best_exact_opener": "tarik"
+ }
+}

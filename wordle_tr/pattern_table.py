@@ -8,6 +8,7 @@ a new file, so the table is rebuilt).
 from __future__ import annotations
 
 import hashlib
+import math
 import os
 from collections.abc import Iterable
 from pathlib import Path
@@ -16,12 +17,13 @@ import numpy as np
 
 from wordle_tr import DATA_DIR
 from wordle_tr.alphabet import WORD_LENGTH
-from wordle_tr.feedback import NUM_PATTERNS
+from wordle_tr.feedback import ALL_GREEN, NUM_PATTERNS
 from wordle_tr.words import encode, load_answers, load_guesses
 
 CACHE_DIR = DATA_DIR / "cache"
 _WEIGHTS = 3 ** np.arange(WORD_LENGTH - 1, -1, -1)  # 81, 27, 9, 3, 1: position 0 most significant
 _EARLIER = np.tri(WORD_LENGTH, k=-1, dtype=bool)  # _EARLIER[i, k] is True when k < i
+CHUNK_CELLS = 4_000_000  # (guess, candidate) cells scored at once by partition_stats, to bound memory
 
 
 def compute_pattern_matrix(guesses: list[str], answers: list[str], chunk: int = 256) -> np.ndarray:
@@ -115,3 +117,49 @@ class PatternTable:
     def partition_counts(self, guess: int | str, ids: np.ndarray) -> np.ndarray:
         """How many of ``ids`` fall into each of the 243 patterns of ``guess``."""
         return np.bincount(self.matrix[self._row(guess), ids], minlength=NUM_PATTERNS)
+
+
+def split(matrix: np.ndarray, row: int, ids: np.ndarray) -> list[np.ndarray]:
+    """The parts of ``ids`` (sorted answer ids) for guess ``row``, without the all-green part."""
+    patterns = matrix[row, ids]
+    order = np.argsort(patterns, kind="stable")
+    ordered = patterns[order]
+    cuts = np.flatnonzero(ordered[1:] != ordered[:-1]) + 1
+    starts = np.concatenate(([0], cuts))
+    return [part for part, start in zip(np.split(ids[order], cuts), starts) if ordered[start] != ALL_GREEN]
+
+
+def partition_stats(matrix: np.ndarray, ids: np.ndarray, rows: np.ndarray | None = None,
+                    weights: np.ndarray | None = None) -> tuple[np.ndarray, np.ndarray]:
+    """Entropy (bits) and number of non-empty parts of each guess row over the candidates ``ids``.
+
+    ``rows`` selects guess rows (default: all); ``weights`` is a prior over ``ids`` (default:
+    uniform). Each row's patterns are sorted, so equal patterns form runs: a run is a part,
+    and its length (or weight) is the part's size.
+    """
+    n_rows = matrix.shape[0] if rows is None else len(rows)
+    n = len(ids)
+    total = float(n) if weights is None else float(weights.sum())
+    bits = np.empty(n_rows)
+    parts = np.empty(n_rows, dtype=np.int64)
+    step = max(1, CHUNK_CELLS // max(n, 1))
+    for start in range(0, n_rows, step):
+        stop = min(start + step, n_rows)
+        sub = matrix[start:stop][:, ids] if rows is None else matrix[np.ix_(rows[start:stop], ids)]
+        if weights is None:
+            sub = np.sort(sub, axis=1, kind="stable")
+        else:
+            order = np.argsort(sub, axis=1, kind="stable")
+            sub = np.take_along_axis(sub, order, axis=1)
+        new_part = np.empty(sub.shape, dtype=bool)
+        new_part[:, 0] = True
+        np.not_equal(sub[:, 1:], sub[:, :-1], out=new_part[:, 1:])
+        starts = np.flatnonzero(new_part)
+        if weights is None:
+            sizes = np.diff(np.append(starts, new_part.size)).astype(float)
+        else:
+            sizes = np.add.reduceat(weights[order].ravel(), starts)
+        size_log_size = np.bincount(starts // n, weights=sizes * np.log2(sizes), minlength=stop - start)
+        parts[start:stop] = np.count_nonzero(new_part, axis=1)
+        bits[start:stop] = np.maximum(math.log2(total) - size_log_size / total, 0.0)  # no -0.0 noise
+    return bits, parts

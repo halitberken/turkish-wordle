@@ -114,7 +114,7 @@ def cmd_watch(args: argparse.Namespace) -> None:
     answer, seed = pick_word(args, answers)
     if answer not in answers:
         sys.exit(f"{args.word!r} is not in the answer list")
-    agent = make_agent(args.agent, args.agent_seed)
+    agent = make_agent(args.agent, args.agent_seed, depth=args.depth, width=args.width)
     print(f"{args.agent} agent, hidden word {to_upper(answer)}"
           + (f" (word seed {seed})" if seed is not None else "") + f", {len(answers):,} candidates")
 
@@ -122,7 +122,7 @@ def cmd_watch(args: argparse.Namespace) -> None:
         line = f"{turn:>2}. {render_guess(guess, pattern, color)}"
         info = getattr(agent, "last_choice", None)
         if info and info["guess"] == guess:
-            line += f"  {info['bits']:.2f} bits"
+            line += f"  {info['bits']:.2f} bits" if "bits" in info else f"  {info['expected_guesses']:.3f} expected"
         if pattern != ALL_GREEN:
             line += f"   {len(candidates):,} candidate{'s' if len(candidates) != 1 else ''} left"
             if len(candidates) <= args.show:
@@ -139,7 +139,11 @@ def cmd_watch(args: argparse.Namespace) -> None:
 
 def expected_bits(agent, guess: str) -> str:
     info = getattr(agent, "last_choice", None)
-    return f" ({info['bits']:.2f} bits expected)" if info and info["guess"] == guess else ""
+    if not info or info["guess"] != guess:
+        return ""
+    if "bits" in info:
+        return f" ({info['bits']:.2f} bits expected)"
+    return f" ({info['expected_guesses']:.3f} guesses expected from here)"
 
 
 def ask(prompt: str) -> str | None:
@@ -153,7 +157,7 @@ def ask(prompt: str) -> str | None:
 def cmd_assist(args: argparse.Namespace) -> None:
     answers, guesses = load_answers(), load_guesses()
     color = use_color(args)
-    agent = make_agent(args.agent, args.agent_seed)
+    agent = make_agent(args.agent, args.agent_seed, depth=args.depth, width=args.width)
     agent.reset()
     history: list[tuple[str, int]] = []
     candidates = list(answers)
@@ -207,6 +211,10 @@ def main() -> None:
     def common(p: argparse.ArgumentParser) -> None:
         p.add_argument("--no-color", action="store_true", help="plain text and emoji instead of ANSI colours")
 
+    def search_options(p: argparse.ArgumentParser) -> None:
+        p.add_argument("--depth", type=int, help="expectimax search depth (default 2)")
+        p.add_argument("--width", type=int, help="expectimax beam width (default 10)")
+
     p = sub.add_parser("play", help="guess a hidden word yourself")
     p.add_argument("--word", help="hidden word (default: a random answer)")
     p.add_argument("--seed", type=int, help="seed for choosing the random word")
@@ -222,6 +230,7 @@ def main() -> None:
     p.add_argument("--filter", choices=FILTER_NAMES, default="feedback", help="candidate filter")
     p.add_argument("--max-guesses", type=int, default=None, help="guess limit (default: unlimited)")
     p.add_argument("--show", type=int, default=10, help="list the candidates when at most this many remain")
+    search_options(p)
     common(p)
     p.set_defaults(func=cmd_watch)
 
@@ -229,6 +238,7 @@ def main() -> None:
     p.add_argument("--agent", choices=sorted(AGENTS), default="entropy", help="agent (default entropy)")
     p.add_argument("--agent-seed", type=int, default=0, help="seed for random agents (default 0)")
     p.add_argument("--show", type=int, default=20, help="list the candidates when at most this many remain")
+    search_options(p)
     common(p)
     p.set_defaults(func=cmd_assist)
 
