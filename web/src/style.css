@@ -289,6 +289,7 @@ input::placeholder { text-transform: none; letter-spacing: 0; font-weight: 400; 
   cursor: pointer;
 }
 .key.wide { flex: 1.6 1 0; max-width: 72px; font-size: 0.8rem; }
+.key[data-key="backspace"] { font-size: 1.25rem; }
 .key[data-state="correct"] { background: var(--correct); color: var(--correct-ink); }
 .key[data-state="present"] { background: var(--present); color: var(--present-ink); }
 .key[data-state="absent"] { background: var(--absent); color: var(--absent-ink); }
@@ -418,5 +419,6 @@ dialog input { width: auto; }
   .brand-name { font-size: 1.15rem; }
   .tabs a { padding: 9px 9px; font-size: 0.88rem; }
   .key { height: 50px; font-size: 0.95rem; }
+  .key.wide { font-size: 0.7rem; }
   .rows li { grid-template-columns: 1fr; gap: 6px; }
 }

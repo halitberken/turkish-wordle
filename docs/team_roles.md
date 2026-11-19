@@ -13,6 +13,7 @@
 | 10 | Expectimax search and exact oracle | Berken | [week 10](week10_expectimax_and_oracle.md) |
 | 11 | Experiments, statistics, error analysis | Faruk | [week 11](week11_experiments.md) |
 | 12 | Final report, presentation, hand-in | everyone | [final report](final_report.md) |
+| – | Web demo ([https://halitberken.github.io/turkish-wordle/](https://halitberken.github.io/turkish-wordle/)) | everyone | [README](../README.md#web-demo) |
 
 ## Owners per file
 
@@ -21,7 +22,7 @@
 | Faruk | `alphabet.py`, `words.py`, `stats.py`, `analysis.py` | `build_word_lists.py`, `word_stats.py`, `experiments.py`, `plot_style.py` | `test_alphabet.py`, `test_analysis.py` |
 | Arda | `feedback.py`, `game.py`, `simulate.py`, `agents/base.py`, `agents/baselines.py`, `agents/entropy.py`, `agents/__init__.py` | `evaluate.py`, `play.py`, `entropy_examples.py` | `test_feedback.py`, `test_game.py`, `test_agents.py`, `test_entropy.py` |
 | Berken | `constraints.py`, `csp_solver.py`, `pattern_table.py`, `filters.py`, `oracle.py`, `agents/expectimax.py` | `benchmark_filters.py`, `expectimax_study.py` | `test_week8.py`, `test_expectimax.py` |
-| everyone | – | `make_demo.py` | `conftest.py` |
+| everyone | – | `make_demo.py`, `export_web_data.py` | `conftest.py`, `test_web_export.py`, `web/tests/`, `web/e2e/` |
 
 Data (`data/`) belongs to Faruk. The CI workflow (`.github/workflows/tests.yml`)
 and the overall integration belong to Berken.
@@ -158,6 +159,10 @@ python scripts/play.py assist                                           # sugges
 The writing step of `build_word_lists.py` also rewrites `data/guesses.txt`,
 `data/answers.txt` and `data/frequencies.tsv` with identical content, so
 running it live is safe.
+
+**Everyone**: open the web demo at [https://halitberken.github.io/turkish-wordle/](https://halitberken.github.io/turkish-wordle/) (Play, then Watch the AI
+on SAYMA with both agents). It works offline from `cd web && npm run dev` if the
+network is unreliable.
 
 ## Suggested presentation (about 20 minutes)
 

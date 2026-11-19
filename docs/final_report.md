@@ -3,9 +3,12 @@
 *BIL 4112 Artificial Intelligence, Dokuz Eylül University, final report.*
 *Team: Berken (lead), Arda, Faruk. November 2026.*
 
+**Try it online: [https://halitberken.github.io/turkish-wordle/](https://halitberken.github.io/turkish-wordle/)**. Play Turkish Wordle, watch the
+agents, or get suggestions for a game played elsewhere (section 9).
+
 Every number in this report comes from a file in `results/` written by a
 script of this repository. The file is named next to each table, and
-section 10 lists the commands that regenerate everything.
+section 11 lists the commands that regenerate everything.
 
 ## Abstract
 
@@ -425,7 +428,34 @@ equals the exact optimum for its opener. Turkish-specific issues are handled
 explicitly throughout: case rules, circumflexes, duplicate letters and, above
 all, one-letter families.
 
-## 9. References
+## 9. Web demo
+
+The agents are available to everyone at **[https://halitberken.github.io/turkish-wordle/](https://halitberken.github.io/turkish-wordle/)**. It is a static
+site (TypeScript and Vite, deployed to GitHub Pages by a workflow), so it needs
+no server and no install. Its three modes match the terminal tools:
+
+* **Play**: a Turkish keyboard with all 29 letters, a daily word, statistics and a
+  shareable result;
+* **Watch the AI**: the entropy or letter-frequency agent solves any word step
+  by step;
+* **Assist**: suggestions for a game played elsewhere.
+
+**The Python package stays the source of truth.** The browser runs ports of
+only what it needs: the alphabet, feedback, constraints and the two agents.
+The 10 MB pattern table is not shipped; the entropy agent computes feedback in a
+Web Worker, and its first two guesses are exported from Python.
+
+**The port is checked against the Python code:**
+
+* Vitest replays the exported fixtures (feedback triples, `describe()` texts,
+  contradictions, the entropy opener and every second guess, and 300 full games
+  per agent) and requires identical results;
+* a Playwright smoke test plays a full game by typing on desktop and phone
+  sizes, and checks that Watch reproduces the Python agent's game for SAYMA.
+
+![Kelime Avı on a phone](demo/web-play-dark-phone-360.png)
+
+## 10. References
 
 1. G. Sanderson (3Blue1Brown), *Solving Wordle using information theory*, 2022.
    https://www.3blue1brown.com/lessons/wordle
@@ -446,7 +476,7 @@ all, one-letter families.
    github.com/mertemin/turkish-word-list, github.com/hermitdave/FrequencyWords
    (`content/2018/tr/tr_50k.txt`).
 
-## 10. Reproduction
+## 11. Reproduction
 
 ```bash
 python -m venv .venv && source .venv/bin/activate && pip install -r requirements.txt
@@ -460,6 +490,7 @@ python scripts/evaluate.py --agent random --agent frequency --agent entropy --ag
 python scripts/entropy_examples.py                     # openers, examples  -> results/entropy_examples.*
 python scripts/expectimax_study.py                     # cost table, oracle -> results/expectimax.*
 python scripts/experiments.py                          # comparison         -> results/comparison.*
+python scripts/export_web_data.py                      # web demo data      -> web/public/data/
 ```
 
 The weekly reports in `docs/` give the details of each part: week 6

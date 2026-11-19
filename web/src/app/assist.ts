@@ -75,7 +75,8 @@ export class AssistPage {
   private renderEntry(): void {
     const letters = [...normalize(this.wordInput.value)];
     this.tiles.forEach((t, i) => {
-      setTile(t, letters[i] ?? "", STATES[this.colors[i]] as TileState);
+      const letter = letters[i] ?? "";
+      setTile(t, letter, letter ? (STATES[this.colors[i]] as TileState) : undefined); // empty until typed
       t.setAttribute("aria-label", `${t.getAttribute("aria-label")}; tap to change the colour`);
     });
   }

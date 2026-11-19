@@ -1,4 +1,19 @@
-# Terminal demo
+# Demo
+
+## Web demo
+
+[https://halitberken.github.io/turkish-wordle/](https://halitberken.github.io/turkish-wordle/). Screenshots recorded with
+`SCREENSHOTS=1 npx playwright test screenshots` in `web/`:
+
+| Screenshot | What it shows |
+| --- | --- |
+| [`web-play-light-desktop.png`](web-play-light-desktop.png) | Play, light theme, desktop |
+| [`web-play-dark-phone-360.png`](web-play-dark-phone-360.png) | Play, dark theme, a 360 px wide phone |
+| [`web-watch-desktop.png`](web-watch-desktop.png) | Watch the AI: the letter-frequency agent needs 8 guesses for SAYMA |
+| [`web-assist-phone-360.png`](web-assist-phone-360.png) | Assist after one row: suggestion, known facts, remaining candidates |
+| [`web-about-desktop.png`](web-about-desktop.png) | How it works, dark theme |
+
+## Terminal demo
 
 Transcripts of the terminal tools, recorded by `python scripts/make_demo.py`
 (scripted keyboard input; the typed text is shown after each prompt):

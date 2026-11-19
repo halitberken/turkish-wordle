@@ -25,6 +25,12 @@ expectimax, needs **3.4095 guesses** on average and never more than 5. That is
 the exact optimum for its opener TARİK. Full details are in the
 [final report](docs/final_report.md).
 
+**Try it online: [https://halitberken.github.io/turkish-wordle/](https://halitberken.github.io/turkish-wordle/)**. Play Turkish Wordle in the browser
+(daily word or practice), watch the AI agents solve any word, or get
+suggestions for a game you are playing elsewhere. No install is needed.
+
+![Kelime Avı, the web demo](docs/demo/web-play-light-desktop.png)
+
 ## Status
 
 | Week | Topic | Owner | Status |
@@ -36,7 +42,7 @@ the exact optimum for its opener TARİK. Full details are in the
 | 10 | Expectimax search and oracle | Berken | ✅ [doc](docs/week10_expectimax_and_oracle.md) |
 | 11 | Experiments and analysis | Faruk | ✅ [doc](docs/week11_experiments.md) |
 | 12 | Final report, presentation, hand-in | everyone | ✅ [final report](docs/final_report.md), [team roles](docs/team_roles.md) |
-| – | Playable web demo (GitHub Pages) | – | ⏳ next |
+| – | Playable web demo (GitHub Pages) | everyone | ✅ [https://halitberken.github.io/turkish-wordle/](https://halitberken.github.io/turkish-wordle/) |
 
 ## Setup
 
@@ -67,9 +73,41 @@ Every script has `--help`, prints a short summary and writes its outputs to `res
 | `python scripts/expectimax_study.py` | Expectimax cost table (depth × width), small sets and 16 fixed openers against the exact oracle, bounds on the optimum (about 10 minutes) → `results/expectimax.json`, `.md` |
 | `python scripts/experiments.py` | Every agent and the ablations on all answers: means with bootstrap 95 % intervals, paired tests, error analysis (about 1 minute) → `results/comparison.json`, `.md` and three charts |
 | `python scripts/make_demo.py` | Records the terminal transcripts in `docs/demo/` |
+| `python scripts/export_web_data.py` | Exports the word lists, precomputed openers, test fixtures and the results summary for the web demo → `web/public/data/` |
 | `python scripts/play.py play` | Play in the terminal (coloured tiles, Turkish keyboard; `--no-color` for emoji) |
 | `python scripts/play.py watch --agent expectimax --word sayma` | Watch an agent solve a word turn by turn (agents: `random`, `frequency`, `entropy`, `entropy_candidates`, `entropy_freq`, `most_parts`, `expectimax`) |
 | `python scripts/play.py assist` | Suggestions (entropy agent by default) while you play on another site: type your word (Enter = suggestion) and its colours (`g`/`y`/`x`) |
+
+## Web demo
+
+`web/` is a static site in TypeScript and Vite, with no framework. It is deployed to
+[GitHub Pages](https://halitberken.github.io/turkish-wordle/) by `.github/workflows/deploy-web.yml` on every push to `main`.
+The browser runs faithful ports of the alphabet, feedback, constraints, and the
+letter-frequency and entropy agents. The entropy search runs in a Web Worker; the
+first two entropy guesses are precomputed in Python.
+
+| Page | What it does |
+| --- | --- |
+| Play | 6 × 5 board, on-screen Turkish keyboard (all 29 letters), physical keyboard with Turkish İ/ı rules, daily word (the same for everyone) or practice, statistics, shareable emoji grid |
+| Watch the AI | The entropy or letter-frequency agent solves a chosen or random word, step by step, with the expected bits and the remaining candidates |
+| Assist | Enter the word you tried elsewhere and tap the tiles to set their colours; get the next suggestion, the remaining candidates and the known facts; contradictions are detected |
+| How it works | The problem, the methods and the results table |
+
+```bash
+python scripts/export_web_data.py     # refresh web/public/data/ (also done in CI)
+cd web
+npm ci
+npm run dev                           # local server with hot reload
+npm test                              # Vitest: the TypeScript port against the Python fixtures
+npm run build                         # type-check and build web/dist
+npx playwright install chromium       # once; or set CHROMIUM_PATH to an installed Chromium
+npx playwright test e2e/smoke.spec.ts # smoke test on desktop and 360 px phone sizes
+```
+
+Light and dark themes and a colour-blind mode (orange and blue, with shapes) are in
+the settings. Statistics and settings are kept in the browser's `localStorage`; the
+page still works if storage is blocked. `?word=kalem` starts a practice game with a
+given word, which the smoke test uses.
 
 ## Results
 
@@ -106,7 +144,8 @@ All 1,900 answers, unlimited guesses, 95 % bootstrap intervals ([`results/compar
 
 ## Demo
 
-Terminal transcripts are in [`docs/demo/`](docs/demo/README.md):
+Web screenshots and terminal transcripts are in [`docs/demo/`](docs/demo/README.md).
+Terminal transcripts:
 [`watch`](docs/demo/watch.txt), [`play`](docs/demo/play.txt),
 [`assist`](docs/demo/assist.txt), the [test run](docs/demo/test_run.txt) and
 the [clean-clone check](docs/demo/clean_clone_check.txt). For example:
@@ -162,6 +201,8 @@ scripts/                  command-line wrappers (owners as their modules; make_d
 tests/                    pytest suite, one file per week (owners as above)
 data/                     raw sources, word lists, excluded answers, frequencies; cache/ (git-ignored)
 results/                  machine-readable results (*.json), tables (*.md), charts (*.png)
-docs/                     weekly reports, final report, team roles, demo transcripts
-.github/workflows/        tests.yml: pytest on every push (Python 3.10 and 3.12)
+docs/                     weekly reports, final report, team roles, demo transcripts and screenshots
+web/                      the web demo: src/core (ports), src/app (pages), tests (Vitest), e2e (Playwright)
+.github/workflows/        tests.yml: pytest on every push (Python 3.10 and 3.12);
+                          deploy-web.yml: export, test, build and deploy the web demo to GitHub Pages
 ```

@@ -19,8 +19,12 @@ async function guess(page: Page, word: string, lastKey: string) {
   await expect(page.locator(`.key[data-key="${lastKey}"]`)).toHaveAttribute("data-state", /.+/);
 }
 
-for (const theme of ["light", "dark"] as const) {
+// One curated shot per page: play in light (desktop) and dark (phone), watch, assist (phone), about.
+const only = (project: string) => test.skip(test.info().project.name !== project, `only on ${project}`);
+
+for (const [theme, project] of [["light", "desktop"], ["dark", "phone-360"]] as const) {
   test(`play (${theme})`, async ({ page }, info) => {
+    only(project);
     await ready(page, "./?word=sayma#play", theme);
     await guess(page, "kamer", "r");
     await guess(page, "salya", "y");
@@ -29,6 +33,7 @@ for (const theme of ["light", "dark"] as const) {
 }
 
 test("watch", async ({ page }, info) => {
+  only("desktop");
   await ready(page, "./#watch", "light");
   await page.fill("#watch-word", "sayma");
   await page.selectOption("#watch-agent", "frequency");
@@ -38,6 +43,7 @@ test("watch", async ({ page }, info) => {
 });
 
 test("assist", async ({ page }, info) => {
+  only("phone-360");
   await ready(page, "./#assist", "light");
   await expect(page.locator("#assist-suggestion")).toContainText("KAMER");
   await page.click("#assist-suggestion button");
@@ -49,6 +55,7 @@ test("assist", async ({ page }, info) => {
 });
 
 test("about", async ({ page }, info) => {
+  only("desktop");
   await ready(page, "./#about", "dark");
   await page.screenshot({ path: `${OUT}/web-about-${info.project.name}.png`, fullPage: true });
 });
