@@ -1,0 +1,90 @@
+{
+ "config": {
+  "states": 500,
+  "seed": 1234,
+  "repeat": 3,
+  "answers": 1900,
+  "guesses": 5370
+ },
+ "table": {
+  "cells": 10203000,
+  "megabytes": 10.203,
+  "build_s": 2.522728702009772,
+  "load_s": 0.001220244012074545
+ },
+ "week9_turn": {
+  "pairs": 10203000,
+  "scalar_us_per_call": 1.0557961650192738,
+  "scalar_estimated_s": 10.77228827169165,
+  "table_partition_counts_all_guesses_ms": 38.06912498839665
+ },
+ "methods": {
+  "feedback": {
+   "mean_ms": 2.0537292424414773,
+   "median_ms": 1.930357000674121,
+   "speedup": 1.0
+  },
+  "constraints": {
+   "mean_ms": 0.3904596817737911,
+   "median_ms": 0.3486280038487166,
+   "speedup": 5.259772873633813
+  },
+  "csp": {
+   "mean_ms": 0.5020621155563276,
+   "median_ms": 0.323437008773908,
+   "speedup": 4.090587954770836
+  },
+  "table": {
+   "mean_ms": 0.01738682563882321,
+   "median_ms": 0.01506850094301626,
+   "speedup": 118.11985034552168
+  },
+  "table (ids only)": {
+   "mean_ms": 0.011767649295506999,
+   "median_ms": 0.011741496564354748,
+   "speedup": 174.52332159708487
+  }
+ },
+ "agreement": {
+  "states": 500,
+  "mismatching_states": 0,
+  "mean_candidates": 71.606
+ },
+ "csp": {
+  "trie_nodes": 4932,
+  "mean_nodes_forward_checking": 614.584,
+  "mean_nodes_backtracking_only": 709.504
+ },
+ "full_check": {
+  "cells": 10203000,
+  "mismatches": 0,
+  "check_s": 14.735677773001953,
+  "scalar_all_pairs_s": 9.961551890999544
+ },
+ "end_to_end": {
+  "feedback": {
+   "wall_s": 4.402781059005065,
+   "filter_s": 3.978705609260942,
+   "mean_guesses": 3.74,
+   "identical_to_reference": true
+  },
+  "constraints": {
+   "wall_s": 1.776840293998248,
+   "filter_s": 1.3414314884867053,
+   "mean_guesses": 3.74,
+   "identical_to_reference": true
+  },
+  "csp": {
+   "wall_s": 3.307553125996492,
+   "filter_s": 2.8556325472600292,
+   "mean_guesses": 3.74,
+   "identical_to_reference": true
+  },
+  "table": {
+   "wall_s": 0.5139341979956953,
+   "filter_s": 0.10056905679812189,
+   "mean_guesses": 3.74,
+   "identical_to_reference": true
+  }
+ }
+}

@@ -1948,8 +1948,8 @@
      "8": 6.0,
      "9": 0.6
     },
-    "mean_time_per_guess_ms": 0.0005668628142412854,
-    "mean_filter_time_ms": 0.4945290479972357
+    "mean_time_per_guess_ms": 0.0006016775621193491,
+    "mean_filter_time_ms": 0.5794895698558452
    },
    "runs": [
     {
@@ -1972,9 +1972,9 @@
       "7": 29,
       "8": 7
      },
-     "mean_time_per_guess_ms": 0.0005385202468351403,
-     "mean_filter_time_ms": 0.4905996303542644,
-     "total_time_s": 3.8760622845438775,
+     "mean_time_per_guess_ms": 0.0005389276525206076,
+     "mean_filter_time_ms": 0.5720072177626891,
+     "total_time_s": 4.518534179616836,
      "hardest": [
       [
        "değin",
@@ -3939,9 +3939,9 @@
       "7": 20,
       "8": 6
      },
-     "mean_time_per_guess_ms": 0.0006449973102650688,
-     "mean_filter_time_ms": 0.4934030473040343,
-     "total_time_s": 3.880747390445322,
+     "mean_time_per_guess_ms": 0.000686391375239827,
+     "mean_filter_time_ms": 0.5794411257786302,
+     "total_time_s": 4.556901647243649,
      "hardest": [
       [
        "asmak",
@@ -5907,9 +5907,9 @@
       "8": 7,
       "9": 1
      },
-     "mean_time_per_guess_ms": 0.0005016482238465085,
-     "mean_filter_time_ms": 0.49452815000760275,
-     "total_time_s": 3.8760833201522473,
+     "mean_time_per_guess_ms": 0.0005429256327556135,
+     "mean_filter_time_ms": 0.582016183531428,
+     "total_time_s": 4.561437824755558,
      "hardest": [
       [
        "zemin",
@@ -7876,9 +7876,9 @@
       "8": 6,
       "9": 2
      },
-     "mean_time_per_guess_ms": 0.0006485263245496998,
-     "mean_filter_time_ms": 0.4974978894681664,
-     "total_time_s": 3.849177354830317,
+     "mean_time_per_guess_ms": 0.0006919489928846763,
+     "mean_filter_time_ms": 0.5832433392057907,
+     "total_time_s": 4.512067971911165,
      "hardest": [
       [
        "haraç",
@@ -9843,9 +9843,9 @@
       "7": 24,
       "8": 4
      },
-     "mean_time_per_guess_ms": 0.0005006219657100095,
-     "mean_filter_time_ms": 0.49661652285211066,
-     "total_time_s": 3.860611746655195,
+     "mean_time_per_guess_ms": 0.0005481941571960213,
+     "mean_filter_time_ms": 0.580739983000688,
+     "total_time_s": 4.514283983808127,
      "hardest": [
       [
        "anmak",
@@ -13065,8 +13065,8 @@
      "7": 12.0,
      "8": 2.0
     },
-    "mean_time_per_guess_ms": 0.05000171973432269,
-    "mean_filter_time_ms": 0.5147553175293328
+    "mean_time_per_guess_ms": 0.051174108765265354,
+    "mean_filter_time_ms": 0.5564220806430519
    },
    "runs": [
     {
@@ -13089,9 +13089,9 @@
       "7": 12,
       "8": 2
      },
-     "mean_time_per_guess_ms": 0.05000171973432269,
-     "mean_filter_time_ms": 0.5147553175293328,
-     "total_time_s": 4.013163506795536,
+     "mean_time_per_guess_ms": 0.051174108765265354,
+     "mean_filter_time_ms": 0.5564220806430519,
+     "total_time_s": 4.317578521935502,
      "hardest": [
       [
        "sayma",

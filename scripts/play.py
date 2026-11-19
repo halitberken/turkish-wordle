@@ -35,7 +35,7 @@ from wordle_tr.feedback import (  # noqa: E402
     pattern_to_emoji,
     render_guess,
 )
-from wordle_tr.filters import FILTERS, make_filter  # noqa: E402
+from wordle_tr.filters import FILTER_NAMES, make_filter  # noqa: E402
 from wordle_tr.game import InvalidGuessError, WordleGame  # noqa: E402
 from wordle_tr.simulate import play_game  # noqa: E402
 from wordle_tr.words import load_answers, load_guesses  # noqa: E402
@@ -126,7 +126,8 @@ def cmd_watch(args: argparse.Namespace) -> None:
                 line += ": " + word_list(candidates, args.show)
         print(line)
 
-    result = play_game(agent, answer, answers, guesses, make_filter(args.filter), args.max_guesses, on_turn)
+    filter_fn = make_filter(args.filter, answers, guesses)
+    result = play_game(agent, answer, answers, guesses, filter_fn, args.max_guesses, on_turn)
     if result.solved:
         print(f"Solved in {result.num_guesses} guesses.")
     else:
@@ -210,7 +211,7 @@ def main() -> None:
     p.add_argument("--word", help="hidden word (default: a random answer)")
     p.add_argument("--seed", type=int, help="seed for choosing the random word")
     p.add_argument("--agent-seed", type=int, default=0, help="seed for random agents (default 0)")
-    p.add_argument("--filter", choices=sorted(FILTERS), default="feedback", help="candidate filter")
+    p.add_argument("--filter", choices=FILTER_NAMES, default="feedback", help="candidate filter")
     p.add_argument("--max-guesses", type=int, default=None, help="guess limit (default: unlimited)")
     p.add_argument("--show", type=int, default=10, help="list the candidates when at most this many remain")
     common(p)

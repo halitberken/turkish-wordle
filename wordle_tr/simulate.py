@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import random
 import statistics
 from collections import Counter
 from collections.abc import Callable, Iterable
@@ -10,8 +11,8 @@ from time import perf_counter
 
 from wordle_tr.agents.base import Agent
 from wordle_tr.alphabet import sort_key
-from wordle_tr.feedback import filter_candidates
-from wordle_tr.filters import FilterFn
+from wordle_tr.feedback import History, feedback
+from wordle_tr.filters import FilterFn, filter_reference
 from wordle_tr.game import WordleGame
 
 SAFETY_LIMIT = 100  # an agent that needs more guesses than this is broken
@@ -39,11 +40,12 @@ def play_game(
     answer: str,
     answers: list[str],
     allowed: Iterable[str] | None = None,
-    filter_fn: FilterFn = filter_candidates,
+    filter_fn: FilterFn = filter_reference,
     max_guesses: int | None = None,
     on_turn: TurnCallback | None = None,
 ) -> GameResult:
-    """Let ``agent`` play one game; the loop (not the agent) filters the candidates.
+    """Let ``agent`` play one game; the loop (not the agent) filters the candidates
+    with ``filter_fn(candidates, history)`` after every guess.
 
     ``on_turn(turn, guess, pattern, candidates)`` is called after every guess.
     """
@@ -62,7 +64,7 @@ def play_game(
         pattern = game.play(guess)
         guess = game.history[-1][0]
         t2 = perf_counter()
-        candidates = filter_fn(candidates, guess, pattern)
+        candidates = filter_fn(candidates, game.history)
         t3 = perf_counter()
         result.guesses.append(guess)
         result.patterns.append(pattern)
@@ -79,7 +81,7 @@ def evaluate(
     agent: Agent,
     answers: list[str],
     allowed: Iterable[str] | None = None,
-    filter_fn: FilterFn = filter_candidates,
+    filter_fn: FilterFn = filter_reference,
     max_guesses: int | None = None,
     words: list[str] | None = None,
 ) -> list[GameResult]:
@@ -87,6 +89,19 @@ def evaluate(
     allowed_set = frozenset(allowed) if allowed is not None else None
     targets = answers if words is None else words
     return [play_game(agent, w, answers, allowed_set, filter_fn, max_guesses) for w in targets]
+
+
+def random_histories(
+    answers: list[str], guesses: list[str], n: int, seed: int, max_guesses: int = 4
+) -> list[tuple[str, History]]:
+    """``n`` random game states: a hidden answer and 1..max_guesses random guesses with their patterns."""
+    rng = random.Random(seed)
+    states = []
+    for _ in range(n):
+        answer = rng.choice(answers)
+        history = [(g, feedback(g, answer)) for g in rng.sample(guesses, rng.randint(1, max_guesses))]
+        states.append((answer, history))
+    return states
 
 
 @dataclass

@@ -19,7 +19,7 @@ from wordle_tr import RESULTS_DIR  # noqa: E402
 from wordle_tr.agents import AGENTS, make_agent  # noqa: E402
 from wordle_tr.alphabet import sort_key, to_upper  # noqa: E402
 from wordle_tr.feedback import pattern_to_emoji  # noqa: E402
-from wordle_tr.filters import FILTERS, make_filter  # noqa: E402
+from wordle_tr.filters import FILTER_NAMES, make_filter  # noqa: E402
 from wordle_tr.simulate import aggregate, evaluate, summarize  # noqa: E402
 from wordle_tr.stats import one_letter_families  # noqa: E402
 from wordle_tr.words import load_answers, load_guesses  # noqa: E402
@@ -172,7 +172,7 @@ def main() -> None:
     parser.add_argument("--sample", type=int, metavar="N",
                         help="play only N randomly chosen hidden words (candidates are still all answers)")
     parser.add_argument("--sample-seed", type=int, default=1234, help="seed for --sample (default 1234)")
-    parser.add_argument("--filter", choices=sorted(FILTERS), default="feedback",
+    parser.add_argument("--filter", choices=FILTER_NAMES, default="feedback",
                         help="candidate filter (results are identical, only speed differs)")
     parser.add_argument("--seeds", type=int, default=5, metavar="N",
                         help="random agents run with seeds 0..N-1 (default 5)")
@@ -186,7 +186,7 @@ def main() -> None:
     if args.sample:
         words = sorted(random.Random(args.sample_seed).sample(answers, args.sample), key=sort_key)
     names = args.agent or ["random", "frequency"]
-    filter_fn = make_filter(args.filter)
+    filter_fn = make_filter(args.filter, answers, guesses)
 
     print(f"evaluating {', '.join(names)} on {len(words or answers):,} words "
           f"(filter {args.filter}, {'unlimited' if args.max_guesses is None else args.max_guesses} guesses)")

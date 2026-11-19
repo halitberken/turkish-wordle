@@ -92,12 +92,13 @@ class Agent(ABC):
 **The game loop owns candidate filtering, not the agent.**
 `simulate.play_game(agent, answer, answers, allowed, filter_fn, max_guesses)`
 keeps the candidate set C_t (the belief state from week 6). After every guess
-it applies `filter_fn(candidates, guess, pattern)`, and it passes the agent a
-copy of the history together with the current candidates. Any filter can be
-swapped in without touching the agents. `wordle_tr/filters.py` currently
-offers the reference filter (`feedback`) and a constraint-based one
-(`constraints`). Week 8 adds the CSP and pattern-table filters. All filters
-must return the same candidates; the tests check this.
+it applies `filter_fn(candidates, history)`, which keeps the candidates
+consistent with every observation so far. It passes the agent a copy of the
+history together with the current candidates. Any filter can be swapped in
+without touching the agents. The reference filter (`feedback`) recomputes the
+feedback for every candidate. Week 8 adds three more filters behind the same
+interface: `constraints`, `csp` and `table`. All filters must return the same
+candidates; the tests check this.
 
 `play_game` records the guesses, the patterns, the number of candidates left
 after each guess, and the time spent choosing (agent) and filtering. On the
@@ -158,10 +159,12 @@ standard deviation of 0.0352. The reference ± 0.01 probably used different
 seeds or a different statistic (for example the standard error); we cannot
 tell from the specification.
 
-**Speed** (machine-dependent): the frequency agent needs 0.050 ms per
-decision. The reference filter needs about 0.5 ms per guess on average; most
+**Speed** (machine-dependent): the frequency agent needs 0.051 ms per
+decision. The reference filter needs 0.556 ms per guess on average; most
 filtering happens on small candidate sets after the first guess. A full
-1,900-game evaluation takes about 4 seconds per agent.
+1,900-game evaluation takes about 4 seconds per agent with this filter. Week 8
+compares the filters: with the pattern table, the same frequency-agent
+evaluation takes 0.51 s instead of 4.40 s (`results/filters.md`).
 
 ## 7. Error analysis: the 14 games the frequency agent loses
 

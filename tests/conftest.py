@@ -2,11 +2,11 @@
 
 from __future__ import annotations
 
-import random
-
 import pytest
 
-from wordle_tr.feedback import feedback
+from wordle_tr.csp_solver import CSPSolver
+from wordle_tr.pattern_table import PatternTable
+from wordle_tr.simulate import random_histories as random_histories_for
 from wordle_tr.words import load_answers, load_guesses
 
 
@@ -36,10 +36,14 @@ def answers() -> list[str]:
 @pytest.fixture(scope="session")
 def random_histories(answers, guesses) -> list[tuple[str, list[tuple[str, int]]]]:
     """300 game states (seed 1234): a hidden answer and 1-4 random guesses with their patterns."""
-    rng = random.Random(1234)
-    states = []
-    for _ in range(300):
-        answer = rng.choice(answers)
-        history = [(g, feedback(g, answer)) for g in rng.sample(guesses, rng.randint(1, 4))]
-        states.append((answer, history))
-    return states
+    return random_histories_for(answers, guesses, n=300, seed=1234)
+
+
+@pytest.fixture(scope="session")
+def table(guesses, answers) -> PatternTable:
+    return PatternTable.load_or_build(guesses, answers)
+
+
+@pytest.fixture(scope="session")
+def solver(answers) -> CSPSolver:
+    return CSPSolver(answers)

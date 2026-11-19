@@ -14,8 +14,6 @@ maximums. For a real pattern p = f(g, s), a word satisfies the constraints of
 
 from __future__ import annotations
 
-import copy
-
 from wordle_tr.alphabet import ALPHABET, WORD_LENGTH, sort_key, to_upper
 from wordle_tr.feedback import GREEN, GREY, YELLOW, History, decode_pattern
 
@@ -32,6 +30,7 @@ class Constraints:
         self.forbidden: list[set[str]] = [set() for _ in range(WORD_LENGTH)]
         self.min_count: dict[str, int] = {}
         self.max_count: dict[str, int] = {}
+        self._checks: tuple | None = None  # compiled form for is_satisfied, built on demand
 
     @classmethod
     def from_history(cls, history: History) -> Constraints:
@@ -48,7 +47,7 @@ class Constraints:
         """
         colors = decode_pattern(pattern)
         _check_pattern_is_possible(guess, colors)
-        new = copy.deepcopy(self)
+        new = self.copy()
         for i, (letter, color) in enumerate(zip(guess, colors)):
             if color == GREEN:
                 if new.fixed[i] not in (None, letter):
@@ -66,21 +65,45 @@ class Constraints:
         new._check()
         self.__dict__.update(new.__dict__)
 
+    def copy(self) -> Constraints:
+        new = Constraints()
+        new.fixed = list(self.fixed)
+        new.forbidden = [set(s) for s in self.forbidden]
+        new.min_count = dict(self.min_count)
+        new.max_count = dict(self.max_count)
+        return new
+
     def is_satisfied(self, word: str) -> bool:
         """True if ``word`` satisfies every constraint."""
-        for i, letter in enumerate(self.fixed):
-            if letter is not None and word[i] != letter:
+        if self._checks is None:
+            self._checks = self._compile()
+        fixed, forbidden, absent, counts = self._checks
+        for i, letter in fixed:
+            if word[i] != letter:
                 return False
-        for i, letters in enumerate(self.forbidden):
+        for i, letters in forbidden:
             if word[i] in letters:
                 return False
-        for letter, k in self.min_count.items():
-            if word.count(letter) < k:
-                return False
-        for letter, k in self.max_count.items():
-            if word.count(letter) > k:
+        if not absent.isdisjoint(word):
+            return False
+        for letter, lo, hi in counts:
+            n = word.count(letter)
+            if n < lo or n > hi:
                 return False
         return True
+
+    def _compile(self) -> tuple:
+        """Only the checks that are not implied by others, as tuples (fast to loop over)."""
+        absent = frozenset(self.absent_letters())
+        fixed = tuple((i, c) for i, c in enumerate(self.fixed) if c is not None)
+        forbidden = tuple((i, frozenset(s - absent)) for i, s in enumerate(self.forbidden)
+                          if self.fixed[i] is None and s - absent)
+        counts = []
+        for letter in sorted(set(self.min_count) | set(self.max_count), key=sort_key):
+            lo, hi = self.min_count.get(letter, 0), self.max_count.get(letter, WORD_LENGTH)
+            if letter not in absent and (lo > self.fixed.count(letter) or hi < WORD_LENGTH):
+                counts.append((letter, lo, hi))
+        return fixed, forbidden, absent, tuple(counts)
 
     def absent_letters(self) -> set[str]:
         return {letter for letter, k in self.max_count.items() if k == 0}
