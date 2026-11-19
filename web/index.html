@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="description" content="Kelime Avı: guess the hidden 5-letter Turkish word, or watch AI agents (entropy, letter frequency) solve it." />
+    <meta name="color-scheme" content="light dark" />
+    <title>Kelime Avı</title>
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%23127e7a'/%3E%3Ctext x='16' y='23' font-family='system-ui,sans-serif' font-size='19' font-weight='800' text-anchor='middle' fill='white'%3EK%3C/text%3E%3C/svg%3E" />
+  </head>
+  <body>
+    <header class="topbar">
+      <a class="brand" href="#play" aria-label="Kelime Avı home">
+        <span class="logo" aria-hidden="true"><i></i><i></i><i></i></span>
+        <span class="brand-name">Kelime Avı</span>
+      </a>
+      <div class="top-actions">
+        <button class="icon-button" id="open-stats" type="button" aria-label="Statistics" title="Statistics">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 20V11M12 20V4M19 20v-7" /></svg>
+        </button>
+        <button class="icon-button" id="open-settings" type="button" aria-label="Settings" title="Settings">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="3.2" /><path d="M12 2.8v2.4M12 18.8v2.4M2.8 12h2.4M18.8 12h2.4M5.5 5.5l1.7 1.7M16.8 16.8l1.7 1.7M5.5 18.5l1.7-1.7M16.8 7.2l1.7-1.7" /></svg>
+        </button>
+      </div>
+    </header>
+
+    <nav class="tabs" role="tablist" aria-label="Modes">
+      <a role="tab" href="#play" data-view="play">Play</a>
+      <a role="tab" href="#watch" data-view="watch">Watch the AI</a>
+      <a role="tab" href="#assist" data-view="assist">Assist</a>
+      <a role="tab" href="#about" data-view="about">How it works</a>
+    </nav>
+
+    <main>
+      <section class="view" id="view-play" aria-label="Play">
+        <div class="play-head">
+          <div class="segmented" role="group" aria-label="Game mode">
+            <button type="button" data-mode="daily" aria-pressed="true">Daily</button>
+            <button type="button" data-mode="practice" aria-pressed="false">Practice</button>
+          </div>
+          <button type="button" class="button ghost" id="new-game">New word</button>
+          <p class="play-label" id="play-label"></p>
+        </div>
+        <div class="board" id="board" aria-label="Guesses"></div>
+        <div class="keyboard" id="keyboard" aria-label="Turkish keyboard"></div>
+      </section>
+
+      <section class="view narrow" id="view-watch" aria-label="Watch the AI" hidden>
+        <p class="lede">Pick an agent and a hidden word, then watch every guess, its colours and how many words are still possible.</p>
+        <div class="controls">
+          <label>Agent
+            <select id="watch-agent">
+              <option value="entropy">Entropy (information gain)</option>
+              <option value="frequency">Letter frequency</option>
+            </select>
+          </label>
+          <label>Hidden word
+            <span class="inline">
+              <input id="watch-word" maxlength="5" autocomplete="off" spellcheck="false" placeholder="e.g. sayma" />
+              <button type="button" class="button ghost" id="watch-random">Random</button>
+            </span>
+          </label>
+        </div>
+        <div class="button-row">
+          <button type="button" class="button" id="watch-step">Next guess</button>
+          <button type="button" class="button" id="watch-play">Play to the end</button>
+          <button type="button" class="button ghost" id="watch-reset">Restart</button>
+        </div>
+        <p class="status" id="watch-status" role="status"></p>
+        <ol class="rows" id="watch-rows"></ol>
+      </section>
+
+      <section class="view narrow" id="view-assist" aria-label="Assist" hidden>
+        <p class="lede">Playing Turkish Wordle somewhere else? Enter the word you tried, tap the tiles to set their colours, and get the next suggestion.</p>
+        <div class="controls">
+          <label>Agent
+            <select id="assist-agent">
+              <option value="entropy">Entropy (information gain)</option>
+              <option value="frequency">Letter frequency</option>
+            </select>
+          </label>
+        </div>
+        <div class="suggestion" id="assist-suggestion" aria-live="polite"></div>
+        <ol class="rows" id="assist-rows"></ol>
+        <div class="entry">
+          <label class="entry-word">Word you tried
+            <input id="assist-word" maxlength="5" autocomplete="off" spellcheck="false" placeholder="5 letters" />
+          </label>
+          <div class="entry-tiles" id="assist-tiles" aria-label="Tap a tile to change its colour"></div>
+          <div class="button-row">
+            <button type="button" class="button" id="assist-add">Add this row</button>
+            <button type="button" class="button ghost" id="assist-undo">Undo</button>
+            <button type="button" class="button ghost" id="assist-reset">Start over</button>
+          </div>
+        </div>
+        <p class="status" id="assist-status" role="status"></p>
+        <div class="facts" id="assist-facts"></div>
+      </section>
+
+      <section class="view narrow prose" id="view-about" aria-label="How it works" hidden></section>
+    </main>
+
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+    <dialog id="stats-dialog" aria-labelledby="stats-title">
+      <form method="dialog" class="dialog-close"><button aria-label="Close">×</button></form>
+      <h2 id="stats-title">Statistics</h2>
+      <p class="result" id="result-text"></p>
+      <div class="stats-grid" id="stats-grid"></div>
+      <h3>Guess distribution</h3>
+      <div class="distribution" id="distribution"></div>
+      <div class="button-row center">
+        <button type="button" class="button" id="share">Share result</button>
+        <button type="button" class="button ghost" id="dialog-new-game">New practice word</button>
+      </div>
+    </dialog>
+
+    <dialog id="settings-dialog" aria-labelledby="settings-title">
+      <form method="dialog" class="dialog-close"><button aria-label="Close">×</button></form>
+      <h2 id="settings-title">Settings</h2>
+      <fieldset>
+        <legend>Theme</legend>
+        <label><input type="radio" name="theme" value="system" /> Follow the system</label>
+        <label><input type="radio" name="theme" value="light" /> Light</label>
+        <label><input type="radio" name="theme" value="dark" /> Dark</label>
+      </fieldset>
+      <label class="switch"><input type="checkbox" id="contrast" /> High contrast colours with shapes (colour-blind friendly)</label>
+    </dialog>
+
+    <noscript><p class="noscript">Kelime Avı needs JavaScript.</p></noscript>
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>

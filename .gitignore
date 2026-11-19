@@ -19,3 +19,7 @@ web/dist/
 .idea/
 .vscode/
 .DS_Store
+
+# Web demo test output
+web/test-results/
+web/playwright-report/

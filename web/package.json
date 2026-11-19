@@ -1,0 +1,21 @@
+{
+  "name": "kelime-avi",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Kelime Avı: a Turkish word-guessing game with AI helpers (BIL 4112 term project web demo)",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc --noEmit && vite build",
+    "preview": "vite preview",
+    "test": "vitest run",
+    "e2e": "playwright test"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.65.1",
+    "@types/node": "^26.6.6",
+    "typescript": "^7.0.2",
+    "vite": "^8.3.8",
+    "vitest": "^5.1.1"
+  }
+}
